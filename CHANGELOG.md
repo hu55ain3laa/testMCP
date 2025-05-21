@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.1-alpha.2 (2025-05-21)
+
+Full Changelog: [v0.0.1-alpha.1...v0.0.1-alpha.2](https://github.com/hu55ain3laa/testMCP/compare/v0.0.1-alpha.1...v0.0.1-alpha.2)
+
+### Chores
+
+* update SDK settings ([e8bba50](https://github.com/hu55ain3laa/testMCP/commit/e8bba503f37bf2bb36c454cfea5649a62a27f63c))
+
 ## 0.0.1-alpha.1 (2025-05-21)
 
 Full Changelog: [v0.0.1-alpha.0...v0.0.1-alpha.1](https://github.com/hu55ain3laa/testMCP/compare/v0.0.1-alpha.0...v0.0.1-alpha.1)
