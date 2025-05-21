@@ -1,5 +1,5 @@
 [project]
-name = "testmcp"
+name = "testmcpapi"
 version = "0.0.1-alpha.1"
 description = "The official Python library for the testmcp API"
 dynamic = ["readme"]
