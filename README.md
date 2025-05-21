@@ -15,12 +15,9 @@ The REST API documentation can be found on [praxis-cloud.com](https://praxis-clo
 ## Installation
 
 ```sh
-# install from the production repo
-pip install git+ssh://git@github.com/hu55ain3laa/testMCP.git
+# install from PyPI
+pip install --pre testmcp
 ```
-
-> [!NOTE]
-> Once this package is [published to PyPI](https://app.stainless.com/docs/guides/publish), this will become: `pip install --pre testmcp`
 
 ## Usage
 
