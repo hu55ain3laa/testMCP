@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: stainless-api/upload-openapi-spec-action@main
         with:
-          stainless_api_key: stl_sk_001uHkAQ3lBpDX059qYy3zJZV33XQf02
+          stainless_api_key: 'stl_sk_001uHkAQ3lBpDX059qYy3zJZV33XQf02'
           input_path: 'path/to/my-company-openapi.json'
           config_path: 'path/to/my-company.stainless.yaml'
           project_name: 'my-stainless-project'
