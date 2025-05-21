@@ -1,0 +1,225 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Iterable
+
+import httpx
+
+from ..types import voucher_create_params
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform, async_maybe_transform
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from .._base_client import make_request_options
+from ..types.voucher_create_response import VoucherCreateResponse
+
+__all__ = ["VouchersResource", "AsyncVouchersResource"]
+
+
+class VouchersResource(SyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> VouchersResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/testmcp-python#accessing-raw-response-data-eg-headers
+        """
+        return VouchersResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> VouchersResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/testmcp-python#with_streaming_response
+        """
+        return VouchersResourceWithStreamingResponse(self)
+
+    def create(
+        self,
+        *,
+        voucher_date: str,
+        voucher_reference: str,
+        voucher_type: str,
+        api_key: str,
+        date_format: str | NotGiven = NOT_GIVEN,
+        delete_voucher_id: str | NotGiven = NOT_GIVEN,
+        voucher_description: str | NotGiven = NOT_GIVEN,
+        voucher_details: Iterable[voucher_create_params.VoucherDetail] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> VoucherCreateResponse:
+        """
+        Create a new voucher or replace an existing one
+
+        Args:
+          voucher_date: Date of The Voucher | Date Format is the sent `dateFormat` or default
+              `yyyy-MM-dd`
+
+          voucher_reference: Voucher Reference
+
+          voucher_type: Voucher Type Code of existing voucher types | example 'JV' or 'SI'
+
+          delete_voucher_id: ID of voucher to be replaced
+
+          voucher_description: any voucher description
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        extra_headers = {"apiKey": api_key, **(extra_headers or {})}
+        return self._post(
+            "/vouchers/",
+            body=maybe_transform(
+                {
+                    "voucher_date": voucher_date,
+                    "voucher_reference": voucher_reference,
+                    "voucher_type": voucher_type,
+                    "date_format": date_format,
+                    "delete_voucher_id": delete_voucher_id,
+                    "voucher_description": voucher_description,
+                    "voucher_details": voucher_details,
+                },
+                voucher_create_params.VoucherCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=VoucherCreateResponse,
+        )
+
+
+class AsyncVouchersResource(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncVouchersResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/testmcp-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncVouchersResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncVouchersResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/testmcp-python#with_streaming_response
+        """
+        return AsyncVouchersResourceWithStreamingResponse(self)
+
+    async def create(
+        self,
+        *,
+        voucher_date: str,
+        voucher_reference: str,
+        voucher_type: str,
+        api_key: str,
+        date_format: str | NotGiven = NOT_GIVEN,
+        delete_voucher_id: str | NotGiven = NOT_GIVEN,
+        voucher_description: str | NotGiven = NOT_GIVEN,
+        voucher_details: Iterable[voucher_create_params.VoucherDetail] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> VoucherCreateResponse:
+        """
+        Create a new voucher or replace an existing one
+
+        Args:
+          voucher_date: Date of The Voucher | Date Format is the sent `dateFormat` or default
+              `yyyy-MM-dd`
+
+          voucher_reference: Voucher Reference
+
+          voucher_type: Voucher Type Code of existing voucher types | example 'JV' or 'SI'
+
+          delete_voucher_id: ID of voucher to be replaced
+
+          voucher_description: any voucher description
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        extra_headers = {"apiKey": api_key, **(extra_headers or {})}
+        return await self._post(
+            "/vouchers/",
+            body=await async_maybe_transform(
+                {
+                    "voucher_date": voucher_date,
+                    "voucher_reference": voucher_reference,
+                    "voucher_type": voucher_type,
+                    "date_format": date_format,
+                    "delete_voucher_id": delete_voucher_id,
+                    "voucher_description": voucher_description,
+                    "voucher_details": voucher_details,
+                },
+                voucher_create_params.VoucherCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=VoucherCreateResponse,
+        )
+
+
+class VouchersResourceWithRawResponse:
+    def __init__(self, vouchers: VouchersResource) -> None:
+        self._vouchers = vouchers
+
+        self.create = to_raw_response_wrapper(
+            vouchers.create,
+        )
+
+
+class AsyncVouchersResourceWithRawResponse:
+    def __init__(self, vouchers: AsyncVouchersResource) -> None:
+        self._vouchers = vouchers
+
+        self.create = async_to_raw_response_wrapper(
+            vouchers.create,
+        )
+
+
+class VouchersResourceWithStreamingResponse:
+    def __init__(self, vouchers: VouchersResource) -> None:
+        self._vouchers = vouchers
+
+        self.create = to_streamed_response_wrapper(
+            vouchers.create,
+        )
+
+
+class AsyncVouchersResourceWithStreamingResponse:
+    def __init__(self, vouchers: AsyncVouchersResource) -> None:
+        self._vouchers = vouchers
+
+        self.create = async_to_streamed_response_wrapper(
+            vouchers.create,
+        )
