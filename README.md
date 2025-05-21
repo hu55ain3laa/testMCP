@@ -1,6 +1,6 @@
 # Testmcp Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/testmcp.svg)](https://pypi.org/project/testmcp/)
+[![PyPI version](https://img.shields.io/pypi/v/testmcpapi.svg)](https://pypi.org/project/testmcpapi/)
 
 The Testmcp Python library provides convenient access to the Testmcp REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -16,7 +16,7 @@ The REST API documentation can be found on [praxis-cloud.com](https://praxis-clo
 
 ```sh
 # install from PyPI
-pip install --pre testmcp
+pip install --pre testmcpapi
 ```
 
 ## Usage
