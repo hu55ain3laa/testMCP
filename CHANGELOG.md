@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.1-alpha.3 (2025-05-22)
+
+Full Changelog: [v0.0.1-alpha.2...v0.0.1-alpha.3](https://github.com/hu55ain3laa/testMCP/compare/v0.0.1-alpha.2...v0.0.1-alpha.3)
+
+### Chores
+
+* **docs:** grammar improvements ([c8aca48](https://github.com/hu55ain3laa/testMCP/commit/c8aca4867fa085529ed85a01c4d7dac257ceea17))
+
 ## 0.0.1-alpha.2 (2025-05-21)
 
 Full Changelog: [v0.0.1-alpha.1...v0.0.1-alpha.2](https://github.com/hu55ain3laa/testMCP/compare/v0.0.1-alpha.1...v0.0.1-alpha.2)
