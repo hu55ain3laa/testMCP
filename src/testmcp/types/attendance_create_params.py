@@ -11,7 +11,7 @@ __all__ = ["AttendanceCreateParams", "Body"]
 
 
 class AttendanceCreateParams(TypedDict, total=False):
-    body: Required[Iterable[Iterable[Body]]]
+    body: Required[Iterable[Body]]
 
     api_key: Required[Annotated[str, PropertyInfo(alias="apiKey")]]
 
