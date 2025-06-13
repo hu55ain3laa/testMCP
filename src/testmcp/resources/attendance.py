@@ -47,7 +47,7 @@ class AttendanceResource(SyncAPIResource):
     def create(
         self,
         *,
-        body: Iterable[Iterable[attendance_create_params.Body]],
+        body: Iterable[attendance_create_params.Body],
         api_key: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -71,7 +71,7 @@ class AttendanceResource(SyncAPIResource):
         extra_headers = {"apiKey": api_key, **(extra_headers or {})}
         return self._post(
             "/attendance/",
-            body=maybe_transform(body, Iterable[Iterable[attendance_create_params.Body]]),
+            body=maybe_transform(body, Iterable[attendance_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -154,7 +154,7 @@ class AsyncAttendanceResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        body: Iterable[Iterable[attendance_create_params.Body]],
+        body: Iterable[attendance_create_params.Body],
         api_key: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -178,7 +178,7 @@ class AsyncAttendanceResource(AsyncAPIResource):
         extra_headers = {"apiKey": api_key, **(extra_headers or {})}
         return await self._post(
             "/attendance/",
-            body=await async_maybe_transform(body, Iterable[Iterable[attendance_create_params.Body]]),
+            body=await async_maybe_transform(body, Iterable[attendance_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
