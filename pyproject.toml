@@ -37,6 +37,8 @@ classifiers = [
 Homepage = "https://github.com/hu55ain3laa/testMCP"
 Repository = "https://github.com/hu55ain3laa/testMCP"
 
+[project.optional-dependencies]
+aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.6"]
 
 [tool.rye]
 managed = true
