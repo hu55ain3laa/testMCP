@@ -25,14 +25,12 @@ class TestAttendance:
     def test_method_create(self, client: Testmcp) -> None:
         attendance = client.attendance.create(
             body=[
-                [
-                    {
-                        "employee_code": "1234",
-                        "machine_name": "office",
-                        "status": "IN",
-                        "timestamp": "2025-05-06T08:14:00.000Z",
-                    }
-                ]
+                {
+                    "employee_code": "1234",
+                    "machine_name": "office",
+                    "status": "IN",
+                    "timestamp": "2025-05-06T08:14:00.000Z",
+                }
             ],
             api_key="apiKey",
         )
@@ -43,14 +41,12 @@ class TestAttendance:
     def test_raw_response_create(self, client: Testmcp) -> None:
         response = client.attendance.with_raw_response.create(
             body=[
-                [
-                    {
-                        "employee_code": "1234",
-                        "machine_name": "office",
-                        "status": "IN",
-                        "timestamp": "2025-05-06T08:14:00.000Z",
-                    }
-                ]
+                {
+                    "employee_code": "1234",
+                    "machine_name": "office",
+                    "status": "IN",
+                    "timestamp": "2025-05-06T08:14:00.000Z",
+                }
             ],
             api_key="apiKey",
         )
@@ -65,14 +61,12 @@ class TestAttendance:
     def test_streaming_response_create(self, client: Testmcp) -> None:
         with client.attendance.with_streaming_response.create(
             body=[
-                [
-                    {
-                        "employee_code": "1234",
-                        "machine_name": "office",
-                        "status": "IN",
-                        "timestamp": "2025-05-06T08:14:00.000Z",
-                    }
-                ]
+                {
+                    "employee_code": "1234",
+                    "machine_name": "office",
+                    "status": "IN",
+                    "timestamp": "2025-05-06T08:14:00.000Z",
+                }
             ],
             api_key="apiKey",
         ) as response:
@@ -129,21 +123,21 @@ class TestAttendance:
 
 
 class TestAsyncAttendance:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncTestmcp) -> None:
         attendance = await async_client.attendance.create(
             body=[
-                [
-                    {
-                        "employee_code": "1234",
-                        "machine_name": "office",
-                        "status": "IN",
-                        "timestamp": "2025-05-06T08:14:00.000Z",
-                    }
-                ]
+                {
+                    "employee_code": "1234",
+                    "machine_name": "office",
+                    "status": "IN",
+                    "timestamp": "2025-05-06T08:14:00.000Z",
+                }
             ],
             api_key="apiKey",
         )
@@ -154,14 +148,12 @@ class TestAsyncAttendance:
     async def test_raw_response_create(self, async_client: AsyncTestmcp) -> None:
         response = await async_client.attendance.with_raw_response.create(
             body=[
-                [
-                    {
-                        "employee_code": "1234",
-                        "machine_name": "office",
-                        "status": "IN",
-                        "timestamp": "2025-05-06T08:14:00.000Z",
-                    }
-                ]
+                {
+                    "employee_code": "1234",
+                    "machine_name": "office",
+                    "status": "IN",
+                    "timestamp": "2025-05-06T08:14:00.000Z",
+                }
             ],
             api_key="apiKey",
         )
@@ -176,14 +168,12 @@ class TestAsyncAttendance:
     async def test_streaming_response_create(self, async_client: AsyncTestmcp) -> None:
         async with async_client.attendance.with_streaming_response.create(
             body=[
-                [
-                    {
-                        "employee_code": "1234",
-                        "machine_name": "office",
-                        "status": "IN",
-                        "timestamp": "2025-05-06T08:14:00.000Z",
-                    }
-                ]
+                {
+                    "employee_code": "1234",
+                    "machine_name": "office",
+                    "status": "IN",
+                    "timestamp": "2025-05-06T08:14:00.000Z",
+                }
             ],
             api_key="apiKey",
         ) as response:
