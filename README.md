@@ -83,7 +83,6 @@ pip install --pre testmcpapi[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
-import os
 import asyncio
 from testmcp import DefaultAioHttpClient
 from testmcp import AsyncTestmcp
@@ -91,7 +90,7 @@ from testmcp import AsyncTestmcp
 
 async def main() -> None:
     async with AsyncTestmcp(
-        api_key=os.environ.get("TESTMCP_API_KEY"),  # This is the default and can be omitted
+        api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
         products = await client.product.list(
