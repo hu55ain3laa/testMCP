@@ -8,7 +8,7 @@ from datetime import date
 import httpx
 
 from ..types import purchase_quotation_list_params, purchase_quotation_create_params, purchase_quotation_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -52,14 +52,14 @@ class PurchaseQuotationsResource(SyncAPIResource):
         date: Union[str, date],
         supplier_id: str,
         api_key: str,
-        add_products: Iterable[purchase_quotation_create_params.AddProduct] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
+        add_products: Iterable[purchase_quotation_create_params.AddProduct] | Omit = omit,
+        description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PurchaseQuotationCreateResponse:
         """
         Create new purchase quotation
@@ -102,18 +102,18 @@ class PurchaseQuotationsResource(SyncAPIResource):
         id: str,
         *,
         api_key: str,
-        add_products: Iterable[purchase_quotation_update_params.AddProduct] | NotGiven = NOT_GIVEN,
-        date: Union[str, date] | NotGiven = NOT_GIVEN,
-        del_products: Iterable[purchase_quotation_update_params.DelProduct] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        mod_products: Iterable[purchase_quotation_update_params.ModProduct] | NotGiven = NOT_GIVEN,
-        supplier_id: str | NotGiven = NOT_GIVEN,
+        add_products: Iterable[purchase_quotation_update_params.AddProduct] | Omit = omit,
+        date: Union[str, date] | Omit = omit,
+        del_products: Iterable[purchase_quotation_update_params.DelProduct] | Omit = omit,
+        description: str | Omit = omit,
+        mod_products: Iterable[purchase_quotation_update_params.ModProduct] | Omit = omit,
+        supplier_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PurchaseQuotationUpdateResponse:
         """
         Update purchase quotation
@@ -165,14 +165,14 @@ class PurchaseQuotationsResource(SyncAPIResource):
         from_date: str,
         to_date: str,
         api_key: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PurchaseQuotationListResponse:
         """
         Get All Purchase Quotations
@@ -242,14 +242,14 @@ class AsyncPurchaseQuotationsResource(AsyncAPIResource):
         date: Union[str, date],
         supplier_id: str,
         api_key: str,
-        add_products: Iterable[purchase_quotation_create_params.AddProduct] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
+        add_products: Iterable[purchase_quotation_create_params.AddProduct] | Omit = omit,
+        description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PurchaseQuotationCreateResponse:
         """
         Create new purchase quotation
@@ -292,18 +292,18 @@ class AsyncPurchaseQuotationsResource(AsyncAPIResource):
         id: str,
         *,
         api_key: str,
-        add_products: Iterable[purchase_quotation_update_params.AddProduct] | NotGiven = NOT_GIVEN,
-        date: Union[str, date] | NotGiven = NOT_GIVEN,
-        del_products: Iterable[purchase_quotation_update_params.DelProduct] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        mod_products: Iterable[purchase_quotation_update_params.ModProduct] | NotGiven = NOT_GIVEN,
-        supplier_id: str | NotGiven = NOT_GIVEN,
+        add_products: Iterable[purchase_quotation_update_params.AddProduct] | Omit = omit,
+        date: Union[str, date] | Omit = omit,
+        del_products: Iterable[purchase_quotation_update_params.DelProduct] | Omit = omit,
+        description: str | Omit = omit,
+        mod_products: Iterable[purchase_quotation_update_params.ModProduct] | Omit = omit,
+        supplier_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PurchaseQuotationUpdateResponse:
         """
         Update purchase quotation
@@ -355,14 +355,14 @@ class AsyncPurchaseQuotationsResource(AsyncAPIResource):
         from_date: str,
         to_date: str,
         api_key: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PurchaseQuotationListResponse:
         """
         Get All Purchase Quotations
