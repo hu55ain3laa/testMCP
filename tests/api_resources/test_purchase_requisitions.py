@@ -19,7 +19,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPurchaseRequisitions:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Testmcp) -> None:
         purchase_requisition = client.purchase_requisitions.create(
@@ -28,7 +28,7 @@ class TestPurchaseRequisitions:
         )
         assert_matches_type(PurchaseRequisitionCreateResponse, purchase_requisition, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Testmcp) -> None:
         purchase_requisition = client.purchase_requisitions.create(
@@ -56,7 +56,7 @@ class TestPurchaseRequisitions:
         )
         assert_matches_type(PurchaseRequisitionCreateResponse, purchase_requisition, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Testmcp) -> None:
         response = client.purchase_requisitions.with_raw_response.create(
@@ -69,7 +69,7 @@ class TestPurchaseRequisitions:
         purchase_requisition = response.parse()
         assert_matches_type(PurchaseRequisitionCreateResponse, purchase_requisition, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Testmcp) -> None:
         with client.purchase_requisitions.with_streaming_response.create(
@@ -84,7 +84,7 @@ class TestPurchaseRequisitions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_add_document(self, client: Testmcp) -> None:
         purchase_requisition = client.purchase_requisitions.add_document(
@@ -99,7 +99,7 @@ class TestPurchaseRequisitions:
         )
         assert purchase_requisition is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_add_document(self, client: Testmcp) -> None:
         response = client.purchase_requisitions.with_raw_response.add_document(
@@ -118,7 +118,7 @@ class TestPurchaseRequisitions:
         purchase_requisition = response.parse()
         assert purchase_requisition is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_add_document(self, client: Testmcp) -> None:
         with client.purchase_requisitions.with_streaming_response.add_document(
@@ -139,7 +139,7 @@ class TestPurchaseRequisitions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_add_document(self, client: Testmcp) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -160,7 +160,7 @@ class TestAsyncPurchaseRequisitions:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTestmcp) -> None:
         purchase_requisition = await async_client.purchase_requisitions.create(
@@ -169,7 +169,7 @@ class TestAsyncPurchaseRequisitions:
         )
         assert_matches_type(PurchaseRequisitionCreateResponse, purchase_requisition, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTestmcp) -> None:
         purchase_requisition = await async_client.purchase_requisitions.create(
@@ -197,7 +197,7 @@ class TestAsyncPurchaseRequisitions:
         )
         assert_matches_type(PurchaseRequisitionCreateResponse, purchase_requisition, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTestmcp) -> None:
         response = await async_client.purchase_requisitions.with_raw_response.create(
@@ -210,7 +210,7 @@ class TestAsyncPurchaseRequisitions:
         purchase_requisition = await response.parse()
         assert_matches_type(PurchaseRequisitionCreateResponse, purchase_requisition, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTestmcp) -> None:
         async with async_client.purchase_requisitions.with_streaming_response.create(
@@ -225,7 +225,7 @@ class TestAsyncPurchaseRequisitions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_add_document(self, async_client: AsyncTestmcp) -> None:
         purchase_requisition = await async_client.purchase_requisitions.add_document(
@@ -240,7 +240,7 @@ class TestAsyncPurchaseRequisitions:
         )
         assert purchase_requisition is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_add_document(self, async_client: AsyncTestmcp) -> None:
         response = await async_client.purchase_requisitions.with_raw_response.add_document(
@@ -259,7 +259,7 @@ class TestAsyncPurchaseRequisitions:
         purchase_requisition = await response.parse()
         assert purchase_requisition is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_add_document(self, async_client: AsyncTestmcp) -> None:
         async with async_client.purchase_requisitions.with_streaming_response.add_document(
@@ -280,7 +280,7 @@ class TestAsyncPurchaseRequisitions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_add_document(self, async_client: AsyncTestmcp) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

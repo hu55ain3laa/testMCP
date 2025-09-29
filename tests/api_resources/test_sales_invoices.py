@@ -16,7 +16,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSalesInvoices:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_print_html(self, client: Testmcp) -> None:
         sales_invoice = client.sales_invoices.print_html(
@@ -25,7 +25,7 @@ class TestSalesInvoices:
         )
         assert_matches_type(str, sales_invoice, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_print_html(self, client: Testmcp) -> None:
         response = client.sales_invoices.with_raw_response.print_html(
@@ -38,7 +38,7 @@ class TestSalesInvoices:
         sales_invoice = response.parse()
         assert_matches_type(str, sales_invoice, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_print_html(self, client: Testmcp) -> None:
         with client.sales_invoices.with_streaming_response.print_html(
@@ -53,7 +53,7 @@ class TestSalesInvoices:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_print_html(self, client: Testmcp) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -68,7 +68,7 @@ class TestAsyncSalesInvoices:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_print_html(self, async_client: AsyncTestmcp) -> None:
         sales_invoice = await async_client.sales_invoices.print_html(
@@ -77,7 +77,7 @@ class TestAsyncSalesInvoices:
         )
         assert_matches_type(str, sales_invoice, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_print_html(self, async_client: AsyncTestmcp) -> None:
         response = await async_client.sales_invoices.with_raw_response.print_html(
@@ -90,7 +90,7 @@ class TestAsyncSalesInvoices:
         sales_invoice = await response.parse()
         assert_matches_type(str, sales_invoice, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_print_html(self, async_client: AsyncTestmcp) -> None:
         async with async_client.sales_invoices.with_streaming_response.print_html(
@@ -105,7 +105,7 @@ class TestAsyncSalesInvoices:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_print_html(self, async_client: AsyncTestmcp) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

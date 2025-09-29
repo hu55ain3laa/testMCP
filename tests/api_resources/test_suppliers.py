@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSuppliers:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Testmcp) -> None:
         supplier = client.suppliers.create(
@@ -26,7 +26,7 @@ class TestSuppliers:
         )
         assert_matches_type(SupplierCreateResponse, supplier, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Testmcp) -> None:
         supplier = client.suppliers.create(
@@ -40,7 +40,7 @@ class TestSuppliers:
         )
         assert_matches_type(SupplierCreateResponse, supplier, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Testmcp) -> None:
         response = client.suppliers.with_raw_response.create(
@@ -53,7 +53,7 @@ class TestSuppliers:
         supplier = response.parse()
         assert_matches_type(SupplierCreateResponse, supplier, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Testmcp) -> None:
         with client.suppliers.with_streaming_response.create(
@@ -68,7 +68,7 @@ class TestSuppliers:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Testmcp) -> None:
         supplier = client.suppliers.update(
@@ -77,7 +77,7 @@ class TestSuppliers:
         )
         assert_matches_type(SupplierUpdateResponse, supplier, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Testmcp) -> None:
         supplier = client.suppliers.update(
@@ -92,7 +92,7 @@ class TestSuppliers:
         )
         assert_matches_type(SupplierUpdateResponse, supplier, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Testmcp) -> None:
         response = client.suppliers.with_raw_response.update(
@@ -105,7 +105,7 @@ class TestSuppliers:
         supplier = response.parse()
         assert_matches_type(SupplierUpdateResponse, supplier, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Testmcp) -> None:
         with client.suppliers.with_streaming_response.update(
@@ -120,7 +120,7 @@ class TestSuppliers:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Testmcp) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -135,7 +135,7 @@ class TestAsyncSuppliers:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTestmcp) -> None:
         supplier = await async_client.suppliers.create(
@@ -144,7 +144,7 @@ class TestAsyncSuppliers:
         )
         assert_matches_type(SupplierCreateResponse, supplier, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncTestmcp) -> None:
         supplier = await async_client.suppliers.create(
@@ -158,7 +158,7 @@ class TestAsyncSuppliers:
         )
         assert_matches_type(SupplierCreateResponse, supplier, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTestmcp) -> None:
         response = await async_client.suppliers.with_raw_response.create(
@@ -171,7 +171,7 @@ class TestAsyncSuppliers:
         supplier = await response.parse()
         assert_matches_type(SupplierCreateResponse, supplier, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTestmcp) -> None:
         async with async_client.suppliers.with_streaming_response.create(
@@ -186,7 +186,7 @@ class TestAsyncSuppliers:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncTestmcp) -> None:
         supplier = await async_client.suppliers.update(
@@ -195,7 +195,7 @@ class TestAsyncSuppliers:
         )
         assert_matches_type(SupplierUpdateResponse, supplier, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncTestmcp) -> None:
         supplier = await async_client.suppliers.update(
@@ -210,7 +210,7 @@ class TestAsyncSuppliers:
         )
         assert_matches_type(SupplierUpdateResponse, supplier, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncTestmcp) -> None:
         response = await async_client.suppliers.with_raw_response.update(
@@ -223,7 +223,7 @@ class TestAsyncSuppliers:
         supplier = await response.parse()
         assert_matches_type(SupplierUpdateResponse, supplier, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncTestmcp) -> None:
         async with async_client.suppliers.with_streaming_response.update(
@@ -238,7 +238,7 @@ class TestAsyncSuppliers:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncTestmcp) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

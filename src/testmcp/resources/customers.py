@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ..types import customer_list_params, customer_create_params, customer_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -52,27 +52,27 @@ class CustomersResource(SyncAPIResource):
         *,
         customer_type: str,
         api_key: str,
-        company_name: str | NotGiven = NOT_GIVEN,
-        customer_address: str | NotGiven = NOT_GIVEN,
-        customer_city: str | NotGiven = NOT_GIVEN,
-        customer_code: int | NotGiven = NOT_GIVEN,
-        customer_comm_reg_number: str | NotGiven = NOT_GIVEN,
-        customer_email: str | NotGiven = NOT_GIVEN,
-        customer_fax: str | NotGiven = NOT_GIVEN,
-        customer_first_name: str | NotGiven = NOT_GIVEN,
-        customer_last_name: str | NotGiven = NOT_GIVEN,
-        customer_middle_name: str | NotGiven = NOT_GIVEN,
-        customer_phone1: str | NotGiven = NOT_GIVEN,
-        customer_phone2: str | NotGiven = NOT_GIVEN,
-        customer_phone3: str | NotGiven = NOT_GIVEN,
-        customer_website: str | NotGiven = NOT_GIVEN,
-        documents: Iterable[DocumentsInfoParam] | NotGiven = NOT_GIVEN,
+        company_name: str | Omit = omit,
+        customer_address: str | Omit = omit,
+        customer_city: str | Omit = omit,
+        customer_code: int | Omit = omit,
+        customer_comm_reg_number: str | Omit = omit,
+        customer_email: str | Omit = omit,
+        customer_fax: str | Omit = omit,
+        customer_first_name: str | Omit = omit,
+        customer_last_name: str | Omit = omit,
+        customer_middle_name: str | Omit = omit,
+        customer_phone1: str | Omit = omit,
+        customer_phone2: str | Omit = omit,
+        customer_phone3: str | Omit = omit,
+        customer_website: str | Omit = omit,
+        documents: Iterable[DocumentsInfoParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerCreateResponse:
         """
         Save New Customer
@@ -156,7 +156,7 @@ class CustomersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Customer:
         """
         Get Single Customer
@@ -186,27 +186,27 @@ class CustomersResource(SyncAPIResource):
         id: str,
         *,
         api_key: str,
-        company_name: str | NotGiven = NOT_GIVEN,
-        customer_address: str | NotGiven = NOT_GIVEN,
-        customer_city: str | NotGiven = NOT_GIVEN,
-        customer_code: int | NotGiven = NOT_GIVEN,
-        customer_comm_reg_number: str | NotGiven = NOT_GIVEN,
-        customer_email: str | NotGiven = NOT_GIVEN,
-        customer_fax: str | NotGiven = NOT_GIVEN,
-        customer_first_name: str | NotGiven = NOT_GIVEN,
-        customer_last_name: str | NotGiven = NOT_GIVEN,
-        customer_middle_name: str | NotGiven = NOT_GIVEN,
-        customer_phone1: str | NotGiven = NOT_GIVEN,
-        customer_phone2: str | NotGiven = NOT_GIVEN,
-        customer_phone3: str | NotGiven = NOT_GIVEN,
-        customer_website: str | NotGiven = NOT_GIVEN,
-        documents: Iterable[DocumentsInfoParam] | NotGiven = NOT_GIVEN,
+        company_name: str | Omit = omit,
+        customer_address: str | Omit = omit,
+        customer_city: str | Omit = omit,
+        customer_code: int | Omit = omit,
+        customer_comm_reg_number: str | Omit = omit,
+        customer_email: str | Omit = omit,
+        customer_fax: str | Omit = omit,
+        customer_first_name: str | Omit = omit,
+        customer_last_name: str | Omit = omit,
+        customer_middle_name: str | Omit = omit,
+        customer_phone1: str | Omit = omit,
+        customer_phone2: str | Omit = omit,
+        customer_phone3: str | Omit = omit,
+        customer_website: str | Omit = omit,
+        documents: Iterable[DocumentsInfoParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerUpdateResponse:
         """
         Update Single Customer
@@ -283,16 +283,16 @@ class CustomersResource(SyncAPIResource):
         self,
         *,
         api_key: str,
-        conversion_date: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        search_filter: str | NotGiven = NOT_GIVEN,
+        conversion_date: str | Omit = omit,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
+        search_filter: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerListResponse:
         """
         Get All Customers
@@ -363,27 +363,27 @@ class AsyncCustomersResource(AsyncAPIResource):
         *,
         customer_type: str,
         api_key: str,
-        company_name: str | NotGiven = NOT_GIVEN,
-        customer_address: str | NotGiven = NOT_GIVEN,
-        customer_city: str | NotGiven = NOT_GIVEN,
-        customer_code: int | NotGiven = NOT_GIVEN,
-        customer_comm_reg_number: str | NotGiven = NOT_GIVEN,
-        customer_email: str | NotGiven = NOT_GIVEN,
-        customer_fax: str | NotGiven = NOT_GIVEN,
-        customer_first_name: str | NotGiven = NOT_GIVEN,
-        customer_last_name: str | NotGiven = NOT_GIVEN,
-        customer_middle_name: str | NotGiven = NOT_GIVEN,
-        customer_phone1: str | NotGiven = NOT_GIVEN,
-        customer_phone2: str | NotGiven = NOT_GIVEN,
-        customer_phone3: str | NotGiven = NOT_GIVEN,
-        customer_website: str | NotGiven = NOT_GIVEN,
-        documents: Iterable[DocumentsInfoParam] | NotGiven = NOT_GIVEN,
+        company_name: str | Omit = omit,
+        customer_address: str | Omit = omit,
+        customer_city: str | Omit = omit,
+        customer_code: int | Omit = omit,
+        customer_comm_reg_number: str | Omit = omit,
+        customer_email: str | Omit = omit,
+        customer_fax: str | Omit = omit,
+        customer_first_name: str | Omit = omit,
+        customer_last_name: str | Omit = omit,
+        customer_middle_name: str | Omit = omit,
+        customer_phone1: str | Omit = omit,
+        customer_phone2: str | Omit = omit,
+        customer_phone3: str | Omit = omit,
+        customer_website: str | Omit = omit,
+        documents: Iterable[DocumentsInfoParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerCreateResponse:
         """
         Save New Customer
@@ -467,7 +467,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Customer:
         """
         Get Single Customer
@@ -497,27 +497,27 @@ class AsyncCustomersResource(AsyncAPIResource):
         id: str,
         *,
         api_key: str,
-        company_name: str | NotGiven = NOT_GIVEN,
-        customer_address: str | NotGiven = NOT_GIVEN,
-        customer_city: str | NotGiven = NOT_GIVEN,
-        customer_code: int | NotGiven = NOT_GIVEN,
-        customer_comm_reg_number: str | NotGiven = NOT_GIVEN,
-        customer_email: str | NotGiven = NOT_GIVEN,
-        customer_fax: str | NotGiven = NOT_GIVEN,
-        customer_first_name: str | NotGiven = NOT_GIVEN,
-        customer_last_name: str | NotGiven = NOT_GIVEN,
-        customer_middle_name: str | NotGiven = NOT_GIVEN,
-        customer_phone1: str | NotGiven = NOT_GIVEN,
-        customer_phone2: str | NotGiven = NOT_GIVEN,
-        customer_phone3: str | NotGiven = NOT_GIVEN,
-        customer_website: str | NotGiven = NOT_GIVEN,
-        documents: Iterable[DocumentsInfoParam] | NotGiven = NOT_GIVEN,
+        company_name: str | Omit = omit,
+        customer_address: str | Omit = omit,
+        customer_city: str | Omit = omit,
+        customer_code: int | Omit = omit,
+        customer_comm_reg_number: str | Omit = omit,
+        customer_email: str | Omit = omit,
+        customer_fax: str | Omit = omit,
+        customer_first_name: str | Omit = omit,
+        customer_last_name: str | Omit = omit,
+        customer_middle_name: str | Omit = omit,
+        customer_phone1: str | Omit = omit,
+        customer_phone2: str | Omit = omit,
+        customer_phone3: str | Omit = omit,
+        customer_website: str | Omit = omit,
+        documents: Iterable[DocumentsInfoParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerUpdateResponse:
         """
         Update Single Customer
@@ -594,16 +594,16 @@ class AsyncCustomersResource(AsyncAPIResource):
         self,
         *,
         api_key: str,
-        conversion_date: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        search_filter: str | NotGiven = NOT_GIVEN,
+        conversion_date: str | Omit = omit,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
+        search_filter: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerListResponse:
         """
         Get All Customers
