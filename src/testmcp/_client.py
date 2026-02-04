@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -21,19 +21,8 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import (
-    product,
-    currency,
-    vouchers,
-    customers,
-    employees,
-    suppliers,
-    attendance,
-    categories,
-    purchase_quotations,
-    purchase_requisitions,
-)
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -41,29 +30,40 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.sales_invoices import sales_invoices
-from .resources.sales_quotations import sales_quotations
+
+if TYPE_CHECKING:
+    from .resources import (
+        product,
+        currency,
+        vouchers,
+        customers,
+        employees,
+        suppliers,
+        attendance,
+        categories,
+        sales_invoices,
+        sales_quotations,
+        purchase_quotations,
+        purchase_requisitions,
+    )
+    from .resources.product import ProductResource, AsyncProductResource
+    from .resources.currency import CurrencyResource, AsyncCurrencyResource
+    from .resources.vouchers import VouchersResource, AsyncVouchersResource
+    from .resources.customers import CustomersResource, AsyncCustomersResource
+    from .resources.employees import EmployeesResource, AsyncEmployeesResource
+    from .resources.suppliers import SuppliersResource, AsyncSuppliersResource
+    from .resources.attendance import AttendanceResource, AsyncAttendanceResource
+    from .resources.categories import CategoriesResource, AsyncCategoriesResource
+    from .resources.purchase_quotations import PurchaseQuotationsResource, AsyncPurchaseQuotationsResource
+    from .resources.purchase_requisitions import PurchaseRequisitionsResource, AsyncPurchaseRequisitionsResource
+    from .resources.sales_invoices.sales_invoices import SalesInvoicesResource, AsyncSalesInvoicesResource
+    from .resources.sales_quotations.sales_quotations import SalesQuotationsResource, AsyncSalesQuotationsResource
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Testmcp", "AsyncTestmcp", "Client", "AsyncClient"]
 
 
 class Testmcp(SyncAPIClient):
     __test__ = False
-    product: product.ProductResource
-    categories: categories.CategoriesResource
-    currency: currency.CurrencyResource
-    vouchers: vouchers.VouchersResource
-    customers: customers.CustomersResource
-    suppliers: suppliers.SuppliersResource
-    purchase_requisitions: purchase_requisitions.PurchaseRequisitionsResource
-    purchase_quotations: purchase_quotations.PurchaseQuotationsResource
-    sales_quotations: sales_quotations.SalesQuotationsResource
-    sales_invoices: sales_invoices.SalesInvoicesResource
-    employees: employees.EmployeesResource
-    attendance: attendance.AttendanceResource
-    with_raw_response: TestmcpWithRawResponse
-    with_streaming_response: TestmcpWithStreamedResponse
-
     # client options
     api_key: str | None
 
@@ -114,20 +114,85 @@ class Testmcp(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.product = product.ProductResource(self)
-        self.categories = categories.CategoriesResource(self)
-        self.currency = currency.CurrencyResource(self)
-        self.vouchers = vouchers.VouchersResource(self)
-        self.customers = customers.CustomersResource(self)
-        self.suppliers = suppliers.SuppliersResource(self)
-        self.purchase_requisitions = purchase_requisitions.PurchaseRequisitionsResource(self)
-        self.purchase_quotations = purchase_quotations.PurchaseQuotationsResource(self)
-        self.sales_quotations = sales_quotations.SalesQuotationsResource(self)
-        self.sales_invoices = sales_invoices.SalesInvoicesResource(self)
-        self.employees = employees.EmployeesResource(self)
-        self.attendance = attendance.AttendanceResource(self)
-        self.with_raw_response = TestmcpWithRawResponse(self)
-        self.with_streaming_response = TestmcpWithStreamedResponse(self)
+    @cached_property
+    def product(self) -> ProductResource:
+        from .resources.product import ProductResource
+
+        return ProductResource(self)
+
+    @cached_property
+    def categories(self) -> CategoriesResource:
+        from .resources.categories import CategoriesResource
+
+        return CategoriesResource(self)
+
+    @cached_property
+    def currency(self) -> CurrencyResource:
+        from .resources.currency import CurrencyResource
+
+        return CurrencyResource(self)
+
+    @cached_property
+    def vouchers(self) -> VouchersResource:
+        from .resources.vouchers import VouchersResource
+
+        return VouchersResource(self)
+
+    @cached_property
+    def customers(self) -> CustomersResource:
+        from .resources.customers import CustomersResource
+
+        return CustomersResource(self)
+
+    @cached_property
+    def suppliers(self) -> SuppliersResource:
+        from .resources.suppliers import SuppliersResource
+
+        return SuppliersResource(self)
+
+    @cached_property
+    def purchase_requisitions(self) -> PurchaseRequisitionsResource:
+        from .resources.purchase_requisitions import PurchaseRequisitionsResource
+
+        return PurchaseRequisitionsResource(self)
+
+    @cached_property
+    def purchase_quotations(self) -> PurchaseQuotationsResource:
+        from .resources.purchase_quotations import PurchaseQuotationsResource
+
+        return PurchaseQuotationsResource(self)
+
+    @cached_property
+    def sales_quotations(self) -> SalesQuotationsResource:
+        from .resources.sales_quotations import SalesQuotationsResource
+
+        return SalesQuotationsResource(self)
+
+    @cached_property
+    def sales_invoices(self) -> SalesInvoicesResource:
+        from .resources.sales_invoices import SalesInvoicesResource
+
+        return SalesInvoicesResource(self)
+
+    @cached_property
+    def employees(self) -> EmployeesResource:
+        from .resources.employees import EmployeesResource
+
+        return EmployeesResource(self)
+
+    @cached_property
+    def attendance(self) -> AttendanceResource:
+        from .resources.attendance import AttendanceResource
+
+        return AttendanceResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> TestmcpWithRawResponse:
+        return TestmcpWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> TestmcpWithStreamedResponse:
+        return TestmcpWithStreamedResponse(self)
 
     @property
     @override
@@ -153,9 +218,7 @@ class Testmcp(SyncAPIClient):
 
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if self.api_key and headers.get("Authorization"):
-            return
-        if isinstance(custom_headers.get("Authorization"), Omit):
+        if headers.get("Authorization") or isinstance(custom_headers.get("Authorization"), Omit):
             return
 
         raise TypeError(
@@ -248,21 +311,6 @@ class Testmcp(SyncAPIClient):
 
 
 class AsyncTestmcp(AsyncAPIClient):
-    product: product.AsyncProductResource
-    categories: categories.AsyncCategoriesResource
-    currency: currency.AsyncCurrencyResource
-    vouchers: vouchers.AsyncVouchersResource
-    customers: customers.AsyncCustomersResource
-    suppliers: suppliers.AsyncSuppliersResource
-    purchase_requisitions: purchase_requisitions.AsyncPurchaseRequisitionsResource
-    purchase_quotations: purchase_quotations.AsyncPurchaseQuotationsResource
-    sales_quotations: sales_quotations.AsyncSalesQuotationsResource
-    sales_invoices: sales_invoices.AsyncSalesInvoicesResource
-    employees: employees.AsyncEmployeesResource
-    attendance: attendance.AsyncAttendanceResource
-    with_raw_response: AsyncTestmcpWithRawResponse
-    with_streaming_response: AsyncTestmcpWithStreamedResponse
-
     # client options
     api_key: str | None
 
@@ -313,20 +361,85 @@ class AsyncTestmcp(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.product = product.AsyncProductResource(self)
-        self.categories = categories.AsyncCategoriesResource(self)
-        self.currency = currency.AsyncCurrencyResource(self)
-        self.vouchers = vouchers.AsyncVouchersResource(self)
-        self.customers = customers.AsyncCustomersResource(self)
-        self.suppliers = suppliers.AsyncSuppliersResource(self)
-        self.purchase_requisitions = purchase_requisitions.AsyncPurchaseRequisitionsResource(self)
-        self.purchase_quotations = purchase_quotations.AsyncPurchaseQuotationsResource(self)
-        self.sales_quotations = sales_quotations.AsyncSalesQuotationsResource(self)
-        self.sales_invoices = sales_invoices.AsyncSalesInvoicesResource(self)
-        self.employees = employees.AsyncEmployeesResource(self)
-        self.attendance = attendance.AsyncAttendanceResource(self)
-        self.with_raw_response = AsyncTestmcpWithRawResponse(self)
-        self.with_streaming_response = AsyncTestmcpWithStreamedResponse(self)
+    @cached_property
+    def product(self) -> AsyncProductResource:
+        from .resources.product import AsyncProductResource
+
+        return AsyncProductResource(self)
+
+    @cached_property
+    def categories(self) -> AsyncCategoriesResource:
+        from .resources.categories import AsyncCategoriesResource
+
+        return AsyncCategoriesResource(self)
+
+    @cached_property
+    def currency(self) -> AsyncCurrencyResource:
+        from .resources.currency import AsyncCurrencyResource
+
+        return AsyncCurrencyResource(self)
+
+    @cached_property
+    def vouchers(self) -> AsyncVouchersResource:
+        from .resources.vouchers import AsyncVouchersResource
+
+        return AsyncVouchersResource(self)
+
+    @cached_property
+    def customers(self) -> AsyncCustomersResource:
+        from .resources.customers import AsyncCustomersResource
+
+        return AsyncCustomersResource(self)
+
+    @cached_property
+    def suppliers(self) -> AsyncSuppliersResource:
+        from .resources.suppliers import AsyncSuppliersResource
+
+        return AsyncSuppliersResource(self)
+
+    @cached_property
+    def purchase_requisitions(self) -> AsyncPurchaseRequisitionsResource:
+        from .resources.purchase_requisitions import AsyncPurchaseRequisitionsResource
+
+        return AsyncPurchaseRequisitionsResource(self)
+
+    @cached_property
+    def purchase_quotations(self) -> AsyncPurchaseQuotationsResource:
+        from .resources.purchase_quotations import AsyncPurchaseQuotationsResource
+
+        return AsyncPurchaseQuotationsResource(self)
+
+    @cached_property
+    def sales_quotations(self) -> AsyncSalesQuotationsResource:
+        from .resources.sales_quotations import AsyncSalesQuotationsResource
+
+        return AsyncSalesQuotationsResource(self)
+
+    @cached_property
+    def sales_invoices(self) -> AsyncSalesInvoicesResource:
+        from .resources.sales_invoices import AsyncSalesInvoicesResource
+
+        return AsyncSalesInvoicesResource(self)
+
+    @cached_property
+    def employees(self) -> AsyncEmployeesResource:
+        from .resources.employees import AsyncEmployeesResource
+
+        return AsyncEmployeesResource(self)
+
+    @cached_property
+    def attendance(self) -> AsyncAttendanceResource:
+        from .resources.attendance import AsyncAttendanceResource
+
+        return AsyncAttendanceResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncTestmcpWithRawResponse:
+        return AsyncTestmcpWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncTestmcpWithStreamedResponse:
+        return AsyncTestmcpWithStreamedResponse(self)
 
     @property
     @override
@@ -352,9 +465,7 @@ class AsyncTestmcp(AsyncAPIClient):
 
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if self.api_key and headers.get("Authorization"):
-            return
-        if isinstance(custom_headers.get("Authorization"), Omit):
+        if headers.get("Authorization") or isinstance(custom_headers.get("Authorization"), Omit):
             return
 
         raise TypeError(
@@ -448,88 +559,320 @@ class AsyncTestmcp(AsyncAPIClient):
 
 class TestmcpWithRawResponse:
     __test__ = False
+    _client: Testmcp
 
     def __init__(self, client: Testmcp) -> None:
-        self.product = product.ProductResourceWithRawResponse(client.product)
-        self.categories = categories.CategoriesResourceWithRawResponse(client.categories)
-        self.currency = currency.CurrencyResourceWithRawResponse(client.currency)
-        self.vouchers = vouchers.VouchersResourceWithRawResponse(client.vouchers)
-        self.customers = customers.CustomersResourceWithRawResponse(client.customers)
-        self.suppliers = suppliers.SuppliersResourceWithRawResponse(client.suppliers)
-        self.purchase_requisitions = purchase_requisitions.PurchaseRequisitionsResourceWithRawResponse(
-            client.purchase_requisitions
-        )
-        self.purchase_quotations = purchase_quotations.PurchaseQuotationsResourceWithRawResponse(
-            client.purchase_quotations
-        )
-        self.sales_quotations = sales_quotations.SalesQuotationsResourceWithRawResponse(client.sales_quotations)
-        self.sales_invoices = sales_invoices.SalesInvoicesResourceWithRawResponse(client.sales_invoices)
-        self.employees = employees.EmployeesResourceWithRawResponse(client.employees)
-        self.attendance = attendance.AttendanceResourceWithRawResponse(client.attendance)
+        self._client = client
+
+    @cached_property
+    def product(self) -> product.ProductResourceWithRawResponse:
+        from .resources.product import ProductResourceWithRawResponse
+
+        return ProductResourceWithRawResponse(self._client.product)
+
+    @cached_property
+    def categories(self) -> categories.CategoriesResourceWithRawResponse:
+        from .resources.categories import CategoriesResourceWithRawResponse
+
+        return CategoriesResourceWithRawResponse(self._client.categories)
+
+    @cached_property
+    def currency(self) -> currency.CurrencyResourceWithRawResponse:
+        from .resources.currency import CurrencyResourceWithRawResponse
+
+        return CurrencyResourceWithRawResponse(self._client.currency)
+
+    @cached_property
+    def vouchers(self) -> vouchers.VouchersResourceWithRawResponse:
+        from .resources.vouchers import VouchersResourceWithRawResponse
+
+        return VouchersResourceWithRawResponse(self._client.vouchers)
+
+    @cached_property
+    def customers(self) -> customers.CustomersResourceWithRawResponse:
+        from .resources.customers import CustomersResourceWithRawResponse
+
+        return CustomersResourceWithRawResponse(self._client.customers)
+
+    @cached_property
+    def suppliers(self) -> suppliers.SuppliersResourceWithRawResponse:
+        from .resources.suppliers import SuppliersResourceWithRawResponse
+
+        return SuppliersResourceWithRawResponse(self._client.suppliers)
+
+    @cached_property
+    def purchase_requisitions(self) -> purchase_requisitions.PurchaseRequisitionsResourceWithRawResponse:
+        from .resources.purchase_requisitions import PurchaseRequisitionsResourceWithRawResponse
+
+        return PurchaseRequisitionsResourceWithRawResponse(self._client.purchase_requisitions)
+
+    @cached_property
+    def purchase_quotations(self) -> purchase_quotations.PurchaseQuotationsResourceWithRawResponse:
+        from .resources.purchase_quotations import PurchaseQuotationsResourceWithRawResponse
+
+        return PurchaseQuotationsResourceWithRawResponse(self._client.purchase_quotations)
+
+    @cached_property
+    def sales_quotations(self) -> sales_quotations.SalesQuotationsResourceWithRawResponse:
+        from .resources.sales_quotations import SalesQuotationsResourceWithRawResponse
+
+        return SalesQuotationsResourceWithRawResponse(self._client.sales_quotations)
+
+    @cached_property
+    def sales_invoices(self) -> sales_invoices.SalesInvoicesResourceWithRawResponse:
+        from .resources.sales_invoices import SalesInvoicesResourceWithRawResponse
+
+        return SalesInvoicesResourceWithRawResponse(self._client.sales_invoices)
+
+    @cached_property
+    def employees(self) -> employees.EmployeesResourceWithRawResponse:
+        from .resources.employees import EmployeesResourceWithRawResponse
+
+        return EmployeesResourceWithRawResponse(self._client.employees)
+
+    @cached_property
+    def attendance(self) -> attendance.AttendanceResourceWithRawResponse:
+        from .resources.attendance import AttendanceResourceWithRawResponse
+
+        return AttendanceResourceWithRawResponse(self._client.attendance)
 
 
 class AsyncTestmcpWithRawResponse:
+    _client: AsyncTestmcp
+
     def __init__(self, client: AsyncTestmcp) -> None:
-        self.product = product.AsyncProductResourceWithRawResponse(client.product)
-        self.categories = categories.AsyncCategoriesResourceWithRawResponse(client.categories)
-        self.currency = currency.AsyncCurrencyResourceWithRawResponse(client.currency)
-        self.vouchers = vouchers.AsyncVouchersResourceWithRawResponse(client.vouchers)
-        self.customers = customers.AsyncCustomersResourceWithRawResponse(client.customers)
-        self.suppliers = suppliers.AsyncSuppliersResourceWithRawResponse(client.suppliers)
-        self.purchase_requisitions = purchase_requisitions.AsyncPurchaseRequisitionsResourceWithRawResponse(
-            client.purchase_requisitions
-        )
-        self.purchase_quotations = purchase_quotations.AsyncPurchaseQuotationsResourceWithRawResponse(
-            client.purchase_quotations
-        )
-        self.sales_quotations = sales_quotations.AsyncSalesQuotationsResourceWithRawResponse(client.sales_quotations)
-        self.sales_invoices = sales_invoices.AsyncSalesInvoicesResourceWithRawResponse(client.sales_invoices)
-        self.employees = employees.AsyncEmployeesResourceWithRawResponse(client.employees)
-        self.attendance = attendance.AsyncAttendanceResourceWithRawResponse(client.attendance)
+        self._client = client
+
+    @cached_property
+    def product(self) -> product.AsyncProductResourceWithRawResponse:
+        from .resources.product import AsyncProductResourceWithRawResponse
+
+        return AsyncProductResourceWithRawResponse(self._client.product)
+
+    @cached_property
+    def categories(self) -> categories.AsyncCategoriesResourceWithRawResponse:
+        from .resources.categories import AsyncCategoriesResourceWithRawResponse
+
+        return AsyncCategoriesResourceWithRawResponse(self._client.categories)
+
+    @cached_property
+    def currency(self) -> currency.AsyncCurrencyResourceWithRawResponse:
+        from .resources.currency import AsyncCurrencyResourceWithRawResponse
+
+        return AsyncCurrencyResourceWithRawResponse(self._client.currency)
+
+    @cached_property
+    def vouchers(self) -> vouchers.AsyncVouchersResourceWithRawResponse:
+        from .resources.vouchers import AsyncVouchersResourceWithRawResponse
+
+        return AsyncVouchersResourceWithRawResponse(self._client.vouchers)
+
+    @cached_property
+    def customers(self) -> customers.AsyncCustomersResourceWithRawResponse:
+        from .resources.customers import AsyncCustomersResourceWithRawResponse
+
+        return AsyncCustomersResourceWithRawResponse(self._client.customers)
+
+    @cached_property
+    def suppliers(self) -> suppliers.AsyncSuppliersResourceWithRawResponse:
+        from .resources.suppliers import AsyncSuppliersResourceWithRawResponse
+
+        return AsyncSuppliersResourceWithRawResponse(self._client.suppliers)
+
+    @cached_property
+    def purchase_requisitions(self) -> purchase_requisitions.AsyncPurchaseRequisitionsResourceWithRawResponse:
+        from .resources.purchase_requisitions import AsyncPurchaseRequisitionsResourceWithRawResponse
+
+        return AsyncPurchaseRequisitionsResourceWithRawResponse(self._client.purchase_requisitions)
+
+    @cached_property
+    def purchase_quotations(self) -> purchase_quotations.AsyncPurchaseQuotationsResourceWithRawResponse:
+        from .resources.purchase_quotations import AsyncPurchaseQuotationsResourceWithRawResponse
+
+        return AsyncPurchaseQuotationsResourceWithRawResponse(self._client.purchase_quotations)
+
+    @cached_property
+    def sales_quotations(self) -> sales_quotations.AsyncSalesQuotationsResourceWithRawResponse:
+        from .resources.sales_quotations import AsyncSalesQuotationsResourceWithRawResponse
+
+        return AsyncSalesQuotationsResourceWithRawResponse(self._client.sales_quotations)
+
+    @cached_property
+    def sales_invoices(self) -> sales_invoices.AsyncSalesInvoicesResourceWithRawResponse:
+        from .resources.sales_invoices import AsyncSalesInvoicesResourceWithRawResponse
+
+        return AsyncSalesInvoicesResourceWithRawResponse(self._client.sales_invoices)
+
+    @cached_property
+    def employees(self) -> employees.AsyncEmployeesResourceWithRawResponse:
+        from .resources.employees import AsyncEmployeesResourceWithRawResponse
+
+        return AsyncEmployeesResourceWithRawResponse(self._client.employees)
+
+    @cached_property
+    def attendance(self) -> attendance.AsyncAttendanceResourceWithRawResponse:
+        from .resources.attendance import AsyncAttendanceResourceWithRawResponse
+
+        return AsyncAttendanceResourceWithRawResponse(self._client.attendance)
 
 
 class TestmcpWithStreamedResponse:
     __test__ = False
+    _client: Testmcp
 
     def __init__(self, client: Testmcp) -> None:
-        self.product = product.ProductResourceWithStreamingResponse(client.product)
-        self.categories = categories.CategoriesResourceWithStreamingResponse(client.categories)
-        self.currency = currency.CurrencyResourceWithStreamingResponse(client.currency)
-        self.vouchers = vouchers.VouchersResourceWithStreamingResponse(client.vouchers)
-        self.customers = customers.CustomersResourceWithStreamingResponse(client.customers)
-        self.suppliers = suppliers.SuppliersResourceWithStreamingResponse(client.suppliers)
-        self.purchase_requisitions = purchase_requisitions.PurchaseRequisitionsResourceWithStreamingResponse(
-            client.purchase_requisitions
-        )
-        self.purchase_quotations = purchase_quotations.PurchaseQuotationsResourceWithStreamingResponse(
-            client.purchase_quotations
-        )
-        self.sales_quotations = sales_quotations.SalesQuotationsResourceWithStreamingResponse(client.sales_quotations)
-        self.sales_invoices = sales_invoices.SalesInvoicesResourceWithStreamingResponse(client.sales_invoices)
-        self.employees = employees.EmployeesResourceWithStreamingResponse(client.employees)
-        self.attendance = attendance.AttendanceResourceWithStreamingResponse(client.attendance)
+        self._client = client
+
+    @cached_property
+    def product(self) -> product.ProductResourceWithStreamingResponse:
+        from .resources.product import ProductResourceWithStreamingResponse
+
+        return ProductResourceWithStreamingResponse(self._client.product)
+
+    @cached_property
+    def categories(self) -> categories.CategoriesResourceWithStreamingResponse:
+        from .resources.categories import CategoriesResourceWithStreamingResponse
+
+        return CategoriesResourceWithStreamingResponse(self._client.categories)
+
+    @cached_property
+    def currency(self) -> currency.CurrencyResourceWithStreamingResponse:
+        from .resources.currency import CurrencyResourceWithStreamingResponse
+
+        return CurrencyResourceWithStreamingResponse(self._client.currency)
+
+    @cached_property
+    def vouchers(self) -> vouchers.VouchersResourceWithStreamingResponse:
+        from .resources.vouchers import VouchersResourceWithStreamingResponse
+
+        return VouchersResourceWithStreamingResponse(self._client.vouchers)
+
+    @cached_property
+    def customers(self) -> customers.CustomersResourceWithStreamingResponse:
+        from .resources.customers import CustomersResourceWithStreamingResponse
+
+        return CustomersResourceWithStreamingResponse(self._client.customers)
+
+    @cached_property
+    def suppliers(self) -> suppliers.SuppliersResourceWithStreamingResponse:
+        from .resources.suppliers import SuppliersResourceWithStreamingResponse
+
+        return SuppliersResourceWithStreamingResponse(self._client.suppliers)
+
+    @cached_property
+    def purchase_requisitions(self) -> purchase_requisitions.PurchaseRequisitionsResourceWithStreamingResponse:
+        from .resources.purchase_requisitions import PurchaseRequisitionsResourceWithStreamingResponse
+
+        return PurchaseRequisitionsResourceWithStreamingResponse(self._client.purchase_requisitions)
+
+    @cached_property
+    def purchase_quotations(self) -> purchase_quotations.PurchaseQuotationsResourceWithStreamingResponse:
+        from .resources.purchase_quotations import PurchaseQuotationsResourceWithStreamingResponse
+
+        return PurchaseQuotationsResourceWithStreamingResponse(self._client.purchase_quotations)
+
+    @cached_property
+    def sales_quotations(self) -> sales_quotations.SalesQuotationsResourceWithStreamingResponse:
+        from .resources.sales_quotations import SalesQuotationsResourceWithStreamingResponse
+
+        return SalesQuotationsResourceWithStreamingResponse(self._client.sales_quotations)
+
+    @cached_property
+    def sales_invoices(self) -> sales_invoices.SalesInvoicesResourceWithStreamingResponse:
+        from .resources.sales_invoices import SalesInvoicesResourceWithStreamingResponse
+
+        return SalesInvoicesResourceWithStreamingResponse(self._client.sales_invoices)
+
+    @cached_property
+    def employees(self) -> employees.EmployeesResourceWithStreamingResponse:
+        from .resources.employees import EmployeesResourceWithStreamingResponse
+
+        return EmployeesResourceWithStreamingResponse(self._client.employees)
+
+    @cached_property
+    def attendance(self) -> attendance.AttendanceResourceWithStreamingResponse:
+        from .resources.attendance import AttendanceResourceWithStreamingResponse
+
+        return AttendanceResourceWithStreamingResponse(self._client.attendance)
 
 
 class AsyncTestmcpWithStreamedResponse:
+    _client: AsyncTestmcp
+
     def __init__(self, client: AsyncTestmcp) -> None:
-        self.product = product.AsyncProductResourceWithStreamingResponse(client.product)
-        self.categories = categories.AsyncCategoriesResourceWithStreamingResponse(client.categories)
-        self.currency = currency.AsyncCurrencyResourceWithStreamingResponse(client.currency)
-        self.vouchers = vouchers.AsyncVouchersResourceWithStreamingResponse(client.vouchers)
-        self.customers = customers.AsyncCustomersResourceWithStreamingResponse(client.customers)
-        self.suppliers = suppliers.AsyncSuppliersResourceWithStreamingResponse(client.suppliers)
-        self.purchase_requisitions = purchase_requisitions.AsyncPurchaseRequisitionsResourceWithStreamingResponse(
-            client.purchase_requisitions
-        )
-        self.purchase_quotations = purchase_quotations.AsyncPurchaseQuotationsResourceWithStreamingResponse(
-            client.purchase_quotations
-        )
-        self.sales_quotations = sales_quotations.AsyncSalesQuotationsResourceWithStreamingResponse(
-            client.sales_quotations
-        )
-        self.sales_invoices = sales_invoices.AsyncSalesInvoicesResourceWithStreamingResponse(client.sales_invoices)
-        self.employees = employees.AsyncEmployeesResourceWithStreamingResponse(client.employees)
-        self.attendance = attendance.AsyncAttendanceResourceWithStreamingResponse(client.attendance)
+        self._client = client
+
+    @cached_property
+    def product(self) -> product.AsyncProductResourceWithStreamingResponse:
+        from .resources.product import AsyncProductResourceWithStreamingResponse
+
+        return AsyncProductResourceWithStreamingResponse(self._client.product)
+
+    @cached_property
+    def categories(self) -> categories.AsyncCategoriesResourceWithStreamingResponse:
+        from .resources.categories import AsyncCategoriesResourceWithStreamingResponse
+
+        return AsyncCategoriesResourceWithStreamingResponse(self._client.categories)
+
+    @cached_property
+    def currency(self) -> currency.AsyncCurrencyResourceWithStreamingResponse:
+        from .resources.currency import AsyncCurrencyResourceWithStreamingResponse
+
+        return AsyncCurrencyResourceWithStreamingResponse(self._client.currency)
+
+    @cached_property
+    def vouchers(self) -> vouchers.AsyncVouchersResourceWithStreamingResponse:
+        from .resources.vouchers import AsyncVouchersResourceWithStreamingResponse
+
+        return AsyncVouchersResourceWithStreamingResponse(self._client.vouchers)
+
+    @cached_property
+    def customers(self) -> customers.AsyncCustomersResourceWithStreamingResponse:
+        from .resources.customers import AsyncCustomersResourceWithStreamingResponse
+
+        return AsyncCustomersResourceWithStreamingResponse(self._client.customers)
+
+    @cached_property
+    def suppliers(self) -> suppliers.AsyncSuppliersResourceWithStreamingResponse:
+        from .resources.suppliers import AsyncSuppliersResourceWithStreamingResponse
+
+        return AsyncSuppliersResourceWithStreamingResponse(self._client.suppliers)
+
+    @cached_property
+    def purchase_requisitions(self) -> purchase_requisitions.AsyncPurchaseRequisitionsResourceWithStreamingResponse:
+        from .resources.purchase_requisitions import AsyncPurchaseRequisitionsResourceWithStreamingResponse
+
+        return AsyncPurchaseRequisitionsResourceWithStreamingResponse(self._client.purchase_requisitions)
+
+    @cached_property
+    def purchase_quotations(self) -> purchase_quotations.AsyncPurchaseQuotationsResourceWithStreamingResponse:
+        from .resources.purchase_quotations import AsyncPurchaseQuotationsResourceWithStreamingResponse
+
+        return AsyncPurchaseQuotationsResourceWithStreamingResponse(self._client.purchase_quotations)
+
+    @cached_property
+    def sales_quotations(self) -> sales_quotations.AsyncSalesQuotationsResourceWithStreamingResponse:
+        from .resources.sales_quotations import AsyncSalesQuotationsResourceWithStreamingResponse
+
+        return AsyncSalesQuotationsResourceWithStreamingResponse(self._client.sales_quotations)
+
+    @cached_property
+    def sales_invoices(self) -> sales_invoices.AsyncSalesInvoicesResourceWithStreamingResponse:
+        from .resources.sales_invoices import AsyncSalesInvoicesResourceWithStreamingResponse
+
+        return AsyncSalesInvoicesResourceWithStreamingResponse(self._client.sales_invoices)
+
+    @cached_property
+    def employees(self) -> employees.AsyncEmployeesResourceWithStreamingResponse:
+        from .resources.employees import AsyncEmployeesResourceWithStreamingResponse
+
+        return AsyncEmployeesResourceWithStreamingResponse(self._client.employees)
+
+    @cached_property
+    def attendance(self) -> attendance.AsyncAttendanceResourceWithStreamingResponse:
+        from .resources.attendance import AsyncAttendanceResourceWithStreamingResponse
+
+        return AsyncAttendanceResourceWithStreamingResponse(self._client.attendance)
 
 
 Client = Testmcp

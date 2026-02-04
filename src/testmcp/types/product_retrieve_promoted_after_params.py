@@ -20,3 +20,6 @@ class ProductRetrievePromotedAfterParams(TypedDict, total=False):
 
     page: int
     """the page offset | page 1 by default"""
+
+    promotion_branch_multi_sel_ids: Annotated[str, PropertyInfo(alias="promotionBranchMultiSelIds")]
+    """Multi selection promotion branches ids : in(1,3,3)"""

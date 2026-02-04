@@ -216,6 +216,7 @@ class ProductResource(SyncAPIResource):
         api_key: str,
         limit: int | Omit = omit,
         page: int | Omit = omit,
+        promotion_branch_multi_sel_ids: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -232,6 +233,8 @@ class ProductResource(SyncAPIResource):
           limit: the number of records per page | 250 by default | 500 maximum
 
           page: the page offset | page 1 by default
+
+          promotion_branch_multi_sel_ids: Multi selection promotion branches ids : in(1,3,3)
 
           extra_headers: Send extra headers
 
@@ -254,6 +257,7 @@ class ProductResource(SyncAPIResource):
                         "date": date,
                         "limit": limit,
                         "page": page,
+                        "promotion_branch_multi_sel_ids": promotion_branch_multi_sel_ids,
                     },
                     product_retrieve_promoted_after_params.ProductRetrievePromotedAfterParams,
                 ),
@@ -268,6 +272,7 @@ class ProductResource(SyncAPIResource):
         api_key: str,
         limit: int | Omit = omit,
         page: int | Omit = omit,
+        warehouse_multi_sel_ids: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -279,11 +284,13 @@ class ProductResource(SyncAPIResource):
         Get Products Available Quantity After A Specific Date
 
         Args:
-          date: Date Of Stock Movment | Date Format : yyyy-MM-dd
+          date: Date Of Stock Movment | Date Format : YYYY-MM-DD HH:mm:ss
 
           limit: the number of records per page | 250 by default | 500 maximum
 
           page: the page offset | page 1 by default
+
+          warehouse_multi_sel_ids: Multi selection warehouse ids : in(1,3,3)
 
           extra_headers: Send extra headers
 
@@ -306,6 +313,7 @@ class ProductResource(SyncAPIResource):
                         "date": date,
                         "limit": limit,
                         "page": page,
+                        "warehouse_multi_sel_ids": warehouse_multi_sel_ids,
                     },
                     product_retrieve_updated_availability_after_params.ProductRetrieveUpdatedAvailabilityAfterParams,
                 ),
@@ -331,7 +339,7 @@ class ProductResource(SyncAPIResource):
         Get Updated Products Prices After A Specific Date
 
         Args:
-          date: Date Of Products Prices Updates | Date Format : yyyy-MM-dd
+          date: Date Of Products Prices Updates | Date Format : YYYY-MM-DD HH:mm:ss
 
           limit: the number of records per page | 250 by default | 500 maximum
 
@@ -549,6 +557,7 @@ class AsyncProductResource(AsyncAPIResource):
         api_key: str,
         limit: int | Omit = omit,
         page: int | Omit = omit,
+        promotion_branch_multi_sel_ids: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -565,6 +574,8 @@ class AsyncProductResource(AsyncAPIResource):
           limit: the number of records per page | 250 by default | 500 maximum
 
           page: the page offset | page 1 by default
+
+          promotion_branch_multi_sel_ids: Multi selection promotion branches ids : in(1,3,3)
 
           extra_headers: Send extra headers
 
@@ -587,6 +598,7 @@ class AsyncProductResource(AsyncAPIResource):
                         "date": date,
                         "limit": limit,
                         "page": page,
+                        "promotion_branch_multi_sel_ids": promotion_branch_multi_sel_ids,
                     },
                     product_retrieve_promoted_after_params.ProductRetrievePromotedAfterParams,
                 ),
@@ -601,6 +613,7 @@ class AsyncProductResource(AsyncAPIResource):
         api_key: str,
         limit: int | Omit = omit,
         page: int | Omit = omit,
+        warehouse_multi_sel_ids: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -612,11 +625,13 @@ class AsyncProductResource(AsyncAPIResource):
         Get Products Available Quantity After A Specific Date
 
         Args:
-          date: Date Of Stock Movment | Date Format : yyyy-MM-dd
+          date: Date Of Stock Movment | Date Format : YYYY-MM-DD HH:mm:ss
 
           limit: the number of records per page | 250 by default | 500 maximum
 
           page: the page offset | page 1 by default
+
+          warehouse_multi_sel_ids: Multi selection warehouse ids : in(1,3,3)
 
           extra_headers: Send extra headers
 
@@ -639,6 +654,7 @@ class AsyncProductResource(AsyncAPIResource):
                         "date": date,
                         "limit": limit,
                         "page": page,
+                        "warehouse_multi_sel_ids": warehouse_multi_sel_ids,
                     },
                     product_retrieve_updated_availability_after_params.ProductRetrieveUpdatedAvailabilityAfterParams,
                 ),
@@ -664,7 +680,7 @@ class AsyncProductResource(AsyncAPIResource):
         Get Updated Products Prices After A Specific Date
 
         Args:
-          date: Date Of Products Prices Updates | Date Format : yyyy-MM-dd
+          date: Date Of Products Prices Updates | Date Format : YYYY-MM-DD HH:mm:ss
 
           limit: the number of records per page | 250 by default | 500 maximum
 

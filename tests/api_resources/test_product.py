@@ -179,6 +179,7 @@ class TestProduct:
             api_key="apiKey",
             limit=0,
             page=0,
+            promotion_branch_multi_sel_ids="promotionBranchMultiSelIds",
         )
         assert_matches_type(ProductRetrievePromotedAfterResponse, product, path=["response"])
 
@@ -227,6 +228,7 @@ class TestProduct:
             api_key="apiKey",
             limit=0,
             page=0,
+            warehouse_multi_sel_ids="warehouseMultiSelIds",
         )
         assert_matches_type(ProductRetrieveUpdatedAvailabilityAfterResponse, product, path=["response"])
 
@@ -467,6 +469,7 @@ class TestAsyncProduct:
             api_key="apiKey",
             limit=0,
             page=0,
+            promotion_branch_multi_sel_ids="promotionBranchMultiSelIds",
         )
         assert_matches_type(ProductRetrievePromotedAfterResponse, product, path=["response"])
 
@@ -515,6 +518,7 @@ class TestAsyncProduct:
             api_key="apiKey",
             limit=0,
             page=0,
+            warehouse_multi_sel_ids="warehouseMultiSelIds",
         )
         assert_matches_type(ProductRetrieveUpdatedAvailabilityAfterResponse, product, path=["response"])
 

@@ -10,6 +10,8 @@ __all__ = ["DocumentsInfoParam"]
 
 
 class DocumentsInfoParam(TypedDict, total=False):
+    """Documents to Attach to the saved entity. each document size Limit is 10MB."""
+
     file_data_base64: Required[Annotated[str, PropertyInfo(alias="fileDataBase64")]]
     """Base 64 encoded file data, can be sent with or without data:...;base64, prefix"""
 

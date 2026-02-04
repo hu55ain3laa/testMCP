@@ -11,7 +11,7 @@ __all__ = ["ProductRetrieveUpdatedPricesAfterParams"]
 
 class ProductRetrieveUpdatedPricesAfterParams(TypedDict, total=False):
     date: Required[str]
-    """Date Of Products Prices Updates | Date Format : yyyy-MM-dd"""
+    """Date Of Products Prices Updates | Date Format : YYYY-MM-DD HH:mm:ss"""
 
     api_key: Required[Annotated[str, PropertyInfo(alias="apiKey")]]
 

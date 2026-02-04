@@ -3,7 +3,7 @@
 <!-- prettier-ignore -->
 [![PyPI version](https://img.shields.io/pypi/v/testmcpapi.svg?label=pypi%20(stable))](https://pypi.org/project/testmcpapi/)
 
-The Testmcp Python library provides convenient access to the Testmcp REST API from any Python 3.8+
+The Testmcp Python library provides convenient access to the Testmcp REST API from any Python 3.9+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -17,7 +17,7 @@ The REST API documentation can be found on [praxis-cloud.com](https://praxis-clo
 
 ```sh
 # install from PyPI
-pip install --pre testmcpapi
+pip install '--pre testmcpapi'
 ```
 
 ## Usage
@@ -77,12 +77,13 @@ You can enable this by installing `aiohttp`:
 
 ```sh
 # install from PyPI
-pip install --pre testmcpapi[aiohttp]
+pip install '--pre testmcpapi[aiohttp]'
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
+import os
 import asyncio
 from testmcp import DefaultAioHttpClient
 from testmcp import AsyncTestmcp
@@ -90,7 +91,7 @@ from testmcp import AsyncTestmcp
 
 async def main() -> None:
     async with AsyncTestmcp(
-        api_key="My API Key",
+        api_key=os.environ.get("TESTMCP_API_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         products = await client.product.list(
@@ -372,7 +373,7 @@ print(testmcp.__version__)
 
 ## Requirements
 
-Python 3.8 or higher.
+Python 3.9 or higher.
 
 ## Contributing
 

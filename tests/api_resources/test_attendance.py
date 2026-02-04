@@ -29,7 +29,7 @@ class TestAttendance:
                     "employee_code": "1234",
                     "machine_name": "office",
                     "status": "IN",
-                    "timestamp": "2025-05-06T08:14:00.000Z",
+                    "timestamp": "2025-05-06 08:14:00",
                 }
             ],
             api_key="apiKey",
@@ -45,7 +45,7 @@ class TestAttendance:
                     "employee_code": "1234",
                     "machine_name": "office",
                     "status": "IN",
-                    "timestamp": "2025-05-06T08:14:00.000Z",
+                    "timestamp": "2025-05-06 08:14:00",
                 }
             ],
             api_key="apiKey",
@@ -65,7 +65,7 @@ class TestAttendance:
                     "employee_code": "1234",
                     "machine_name": "office",
                     "status": "IN",
-                    "timestamp": "2025-05-06T08:14:00.000Z",
+                    "timestamp": "2025-05-06 08:14:00",
                 }
             ],
             api_key="apiKey",
@@ -136,7 +136,7 @@ class TestAsyncAttendance:
                     "employee_code": "1234",
                     "machine_name": "office",
                     "status": "IN",
-                    "timestamp": "2025-05-06T08:14:00.000Z",
+                    "timestamp": "2025-05-06 08:14:00",
                 }
             ],
             api_key="apiKey",
@@ -152,7 +152,7 @@ class TestAsyncAttendance:
                     "employee_code": "1234",
                     "machine_name": "office",
                     "status": "IN",
-                    "timestamp": "2025-05-06T08:14:00.000Z",
+                    "timestamp": "2025-05-06 08:14:00",
                 }
             ],
             api_key="apiKey",
@@ -172,7 +172,7 @@ class TestAsyncAttendance:
                     "employee_code": "1234",
                     "machine_name": "office",
                     "status": "IN",
-                    "timestamp": "2025-05-06T08:14:00.000Z",
+                    "timestamp": "2025-05-06 08:14:00",
                 }
             ],
             api_key="apiKey",
