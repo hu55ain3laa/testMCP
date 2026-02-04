@@ -224,9 +224,12 @@ class TestCustomers:
     def test_method_list_with_all_params(self, client: Testmcp) -> None:
         customer = client.customers.list(
             api_key="apiKey",
+            code="code",
             conversion_date="conversionDate",
             limit=0,
+            name="name",
             page=0,
+            phone="phone",
             search_filter="searchFilter",
         )
         assert_matches_type(CustomerListResponse, customer, path=["response"])
@@ -465,9 +468,12 @@ class TestAsyncCustomers:
     async def test_method_list_with_all_params(self, async_client: AsyncTestmcp) -> None:
         customer = await async_client.customers.list(
             api_key="apiKey",
+            code="code",
             conversion_date="conversionDate",
             limit=0,
+            name="name",
             page=0,
+            phone="phone",
             search_filter="searchFilter",
         )
         assert_matches_type(CustomerListResponse, customer, path=["response"])

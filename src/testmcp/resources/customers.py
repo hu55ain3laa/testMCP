@@ -283,9 +283,12 @@ class CustomersResource(SyncAPIResource):
         self,
         *,
         api_key: str,
+        code: str | Omit = omit,
         conversion_date: str | Omit = omit,
         limit: int | Omit = omit,
+        name: str | Omit = omit,
         page: int | Omit = omit,
+        phone: str | Omit = omit,
         search_filter: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -298,13 +301,19 @@ class CustomersResource(SyncAPIResource):
         Get All Customers
 
         Args:
+          code: Filter by customer code
+
           conversion_date:
-              get customers that were created or converted after the sent date | Date format :
+              Get customers that were created or converted after the sent date | Date format :
               yyyy-MM-dd
 
           limit: the number of records per page | 250 by default | 500 maximum
 
+          name: Filter by customer name
+
           page: the page offset | page 1 by default
+
+          phone: Filter by customer phone
 
           search_filter: general search filter
 
@@ -326,9 +335,12 @@ class CustomersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "code": code,
                         "conversion_date": conversion_date,
                         "limit": limit,
+                        "name": name,
                         "page": page,
+                        "phone": phone,
                         "search_filter": search_filter,
                     },
                     customer_list_params.CustomerListParams,
@@ -594,9 +606,12 @@ class AsyncCustomersResource(AsyncAPIResource):
         self,
         *,
         api_key: str,
+        code: str | Omit = omit,
         conversion_date: str | Omit = omit,
         limit: int | Omit = omit,
+        name: str | Omit = omit,
         page: int | Omit = omit,
+        phone: str | Omit = omit,
         search_filter: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -609,13 +624,19 @@ class AsyncCustomersResource(AsyncAPIResource):
         Get All Customers
 
         Args:
+          code: Filter by customer code
+
           conversion_date:
-              get customers that were created or converted after the sent date | Date format :
+              Get customers that were created or converted after the sent date | Date format :
               yyyy-MM-dd
 
           limit: the number of records per page | 250 by default | 500 maximum
 
+          name: Filter by customer name
+
           page: the page offset | page 1 by default
+
+          phone: Filter by customer phone
 
           search_filter: general search filter
 
@@ -637,9 +658,12 @@ class AsyncCustomersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "code": code,
                         "conversion_date": conversion_date,
                         "limit": limit,
+                        "name": name,
                         "page": page,
+                        "phone": phone,
                         "search_filter": search_filter,
                     },
                     customer_list_params.CustomerListParams,

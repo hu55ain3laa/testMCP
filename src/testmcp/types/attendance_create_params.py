@@ -25,7 +25,4 @@ class Body(TypedDict, total=False):
     """Either 'IN' , 'OUT' , 'BREAK_IN' , or 'BREAK_OUT'"""
 
     timestamp: Required[str]
-    """
-    ISO 8601 datetime with 'T' with or without seconds and milliseconds. Do not set
-    a timezone or 'Z' field.
-    """
+    """Datetime format YYYY-MM-DD HH:mm:ss"""
