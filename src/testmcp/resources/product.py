@@ -127,7 +127,7 @@ class ProductResource(SyncAPIResource):
         Get Created Products and Updated Products After A Specific Date
 
         Args:
-          date: Date of products created | Date Format : yyyy-MM-dd
+          date: Date of products created | Date Format : yyyy-MM-dd HH:mm:ss
 
           limit: the number of records per page | 250 by default | 500 maximum
 
@@ -468,7 +468,7 @@ class AsyncProductResource(AsyncAPIResource):
         Get Created Products and Updated Products After A Specific Date
 
         Args:
-          date: Date of products created | Date Format : yyyy-MM-dd
+          date: Date of products created | Date Format : yyyy-MM-dd HH:mm:ss
 
           limit: the number of records per page | 250 by default | 500 maximum
 

@@ -20,7 +20,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAttendance:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Testmcp) -> None:
         attendance = client.attendance.create(
@@ -36,7 +36,7 @@ class TestAttendance:
         )
         assert_matches_type(AttendanceCreateResponse, attendance, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Testmcp) -> None:
         response = client.attendance.with_raw_response.create(
@@ -56,7 +56,7 @@ class TestAttendance:
         attendance = response.parse()
         assert_matches_type(AttendanceCreateResponse, attendance, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Testmcp) -> None:
         with client.attendance.with_streaming_response.create(
@@ -78,7 +78,7 @@ class TestAttendance:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Testmcp) -> None:
         attendance = client.attendance.delete(
@@ -89,7 +89,7 @@ class TestAttendance:
         )
         assert_matches_type(AttendanceDeleteResponse, attendance, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Testmcp) -> None:
         response = client.attendance.with_raw_response.delete(
@@ -104,7 +104,7 @@ class TestAttendance:
         attendance = response.parse()
         assert_matches_type(AttendanceDeleteResponse, attendance, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Testmcp) -> None:
         with client.attendance.with_streaming_response.delete(
@@ -127,7 +127,7 @@ class TestAsyncAttendance:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTestmcp) -> None:
         attendance = await async_client.attendance.create(
@@ -143,7 +143,7 @@ class TestAsyncAttendance:
         )
         assert_matches_type(AttendanceCreateResponse, attendance, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTestmcp) -> None:
         response = await async_client.attendance.with_raw_response.create(
@@ -163,7 +163,7 @@ class TestAsyncAttendance:
         attendance = await response.parse()
         assert_matches_type(AttendanceCreateResponse, attendance, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTestmcp) -> None:
         async with async_client.attendance.with_streaming_response.create(
@@ -185,7 +185,7 @@ class TestAsyncAttendance:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTestmcp) -> None:
         attendance = await async_client.attendance.delete(
@@ -196,7 +196,7 @@ class TestAsyncAttendance:
         )
         assert_matches_type(AttendanceDeleteResponse, attendance, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTestmcp) -> None:
         response = await async_client.attendance.with_raw_response.delete(
@@ -211,7 +211,7 @@ class TestAsyncAttendance:
         attendance = await response.parse()
         assert_matches_type(AttendanceDeleteResponse, attendance, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTestmcp) -> None:
         async with async_client.attendance.with_streaming_response.delete(

@@ -31,11 +31,15 @@ class Data(BaseModel):
 
     image: Optional[str] = None
 
+    last_updated_on: Optional[str] = FieldInfo(alias="lastUpdatedOn", default=None)
+
     name: Optional[str] = None
 
     season: Optional[str] = None
 
     spec_id: Optional[str] = FieldInfo(alias="specId", default=None)
+
+    spec_name: Optional[str] = FieldInfo(alias="specName", default=None)
 
 
 class ProductRetrieveCreatedAfterResponse(BaseModel):
