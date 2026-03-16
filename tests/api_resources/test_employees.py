@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestEmployees:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Testmcp) -> None:
         employee = client.employees.list(
@@ -25,7 +25,7 @@ class TestEmployees:
         )
         assert_matches_type(EmployeeListResponse, employee, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Testmcp) -> None:
         employee = client.employees.list(
@@ -35,7 +35,7 @@ class TestEmployees:
         )
         assert_matches_type(EmployeeListResponse, employee, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Testmcp) -> None:
         response = client.employees.with_raw_response.list(
@@ -47,7 +47,7 @@ class TestEmployees:
         employee = response.parse()
         assert_matches_type(EmployeeListResponse, employee, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Testmcp) -> None:
         with client.employees.with_streaming_response.list(
@@ -67,7 +67,7 @@ class TestAsyncEmployees:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncTestmcp) -> None:
         employee = await async_client.employees.list(
@@ -75,7 +75,7 @@ class TestAsyncEmployees:
         )
         assert_matches_type(EmployeeListResponse, employee, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncTestmcp) -> None:
         employee = await async_client.employees.list(
@@ -85,7 +85,7 @@ class TestAsyncEmployees:
         )
         assert_matches_type(EmployeeListResponse, employee, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncTestmcp) -> None:
         response = await async_client.employees.with_raw_response.list(
@@ -97,7 +97,7 @@ class TestAsyncEmployees:
         employee = await response.parse()
         assert_matches_type(EmployeeListResponse, employee, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncTestmcp) -> None:
         async with async_client.employees.with_streaming_response.list(
