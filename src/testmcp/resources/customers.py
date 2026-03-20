@@ -8,7 +8,7 @@ import httpx
 
 from ..types import customer_list_params, customer_create_params, customer_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -174,7 +174,7 @@ class CustomersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"apiKey": api_key, **(extra_headers or {})}
         return self._get(
-            f"/customers/{id}",
+            path_template("/customers/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -252,7 +252,7 @@ class CustomersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"apiKey": api_key, **(extra_headers or {})}
         return self._put(
-            f"/customers/{id}",
+            path_template("/customers/{id}", id=id),
             body=maybe_transform(
                 {
                     "company_name": company_name,
@@ -497,7 +497,7 @@ class AsyncCustomersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"apiKey": api_key, **(extra_headers or {})}
         return await self._get(
-            f"/customers/{id}",
+            path_template("/customers/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -575,7 +575,7 @@ class AsyncCustomersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"apiKey": api_key, **(extra_headers or {})}
         return await self._put(
-            f"/customers/{id}",
+            path_template("/customers/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "company_name": company_name,

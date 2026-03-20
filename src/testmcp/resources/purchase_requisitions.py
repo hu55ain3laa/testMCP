@@ -8,7 +8,7 @@ import httpx
 
 from ..types import purchase_requisition_create_params
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -134,7 +134,7 @@ class PurchaseRequisitionsResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         extra_headers.update({"apiKey": api_key})
         return self._post(
-            f"/purchaseRequisitions/{id}/documents",
+            path_template("/purchaseRequisitions/{id}/documents", id=id),
             body=maybe_transform(body, Iterable[DocumentsInfoParam]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -253,7 +253,7 @@ class AsyncPurchaseRequisitionsResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         extra_headers.update({"apiKey": api_key})
         return await self._post(
-            f"/purchaseRequisitions/{id}/documents",
+            path_template("/purchaseRequisitions/{id}/documents", id=id),
             body=await async_maybe_transform(body, Iterable[DocumentsInfoParam]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
