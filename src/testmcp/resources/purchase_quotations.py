@@ -9,7 +9,7 @@ import httpx
 
 from ..types import purchase_quotation_list_params, purchase_quotation_create_params, purchase_quotation_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -141,7 +141,7 @@ class PurchaseQuotationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"apiKey": api_key, **(extra_headers or {})}
         return self._put(
-            f"/purchaseQuotations/{id}",
+            path_template("/purchaseQuotations/{id}", id=id),
             body=maybe_transform(
                 {
                     "add_products": add_products,
@@ -331,7 +331,7 @@ class AsyncPurchaseQuotationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"apiKey": api_key, **(extra_headers or {})}
         return await self._put(
-            f"/purchaseQuotations/{id}",
+            path_template("/purchaseQuotations/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "add_products": add_products,
