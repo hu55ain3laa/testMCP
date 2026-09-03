@@ -1,8 +1,9 @@
 # Testmcp Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/testmcpapi.svg)](https://pypi.org/project/testmcpapi/)
+<!-- prettier-ignore -->
+[![PyPI version](https://img.shields.io/pypi/v/testmcpapi.svg?label=pypi%20(stable))](https://pypi.org/project/testmcpapi/)
 
-The Testmcp Python library provides convenient access to the Testmcp REST API from any Python 3.8+
+The Testmcp Python library provides convenient access to the Testmcp REST API from any Python 3.9+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -16,7 +17,7 @@ The REST API documentation can be found on [praxis-cloud.com](https://praxis-clo
 
 ```sh
 # install from PyPI
-pip install --pre testmcpapi
+pip install '--pre testmcpapi'
 ```
 
 ## Usage
@@ -67,6 +68,40 @@ asyncio.run(main())
 ```
 
 Functionality between the synchronous and asynchronous clients is otherwise identical.
+
+### With aiohttp
+
+By default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.
+
+You can enable this by installing `aiohttp`:
+
+```sh
+# install from PyPI
+pip install '--pre testmcpapi[aiohttp]'
+```
+
+Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
+
+```python
+import os
+import asyncio
+from testmcp import DefaultAioHttpClient
+from testmcp import AsyncTestmcp
+
+
+async def main() -> None:
+    async with AsyncTestmcp(
+        api_key=os.environ.get("TESTMCP_API_KEY"),  # This is the default and can be omitted
+        http_client=DefaultAioHttpClient(),
+    ) as client:
+        products = await client.product.list(
+            api_key="apiKey",
+        )
+        print(products.data)
+
+
+asyncio.run(main())
+```
 
 ## Using types
 
@@ -146,7 +181,7 @@ client.with_options(max_retries=5).product.list(
 ### Timeouts
 
 By default requests time out after 1 minute. You can configure this with a `timeout` option,
-which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
+which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:
 
 ```python
 from testmcp import Testmcp
@@ -338,7 +373,7 @@ print(testmcp.__version__)
 
 ## Requirements
 
-Python 3.8 or higher.
+Python 3.9 or higher.
 
 ## Contributing
 

@@ -20,37 +20,33 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAttendance:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Testmcp) -> None:
         attendance = client.attendance.create(
             body=[
-                [
-                    {
-                        "employee_code": "1234",
-                        "machine_name": "office",
-                        "status": "IN",
-                        "timestamp": "2025-05-06T08:14:00.000Z",
-                    }
-                ]
+                {
+                    "employee_code": "1234",
+                    "machine_name": "office",
+                    "status": "IN",
+                    "timestamp": "2025-05-06 08:14:00",
+                }
             ],
             api_key="apiKey",
         )
         assert_matches_type(AttendanceCreateResponse, attendance, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Testmcp) -> None:
         response = client.attendance.with_raw_response.create(
             body=[
-                [
-                    {
-                        "employee_code": "1234",
-                        "machine_name": "office",
-                        "status": "IN",
-                        "timestamp": "2025-05-06T08:14:00.000Z",
-                    }
-                ]
+                {
+                    "employee_code": "1234",
+                    "machine_name": "office",
+                    "status": "IN",
+                    "timestamp": "2025-05-06 08:14:00",
+                }
             ],
             api_key="apiKey",
         )
@@ -60,19 +56,17 @@ class TestAttendance:
         attendance = response.parse()
         assert_matches_type(AttendanceCreateResponse, attendance, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Testmcp) -> None:
         with client.attendance.with_streaming_response.create(
             body=[
-                [
-                    {
-                        "employee_code": "1234",
-                        "machine_name": "office",
-                        "status": "IN",
-                        "timestamp": "2025-05-06T08:14:00.000Z",
-                    }
-                ]
+                {
+                    "employee_code": "1234",
+                    "machine_name": "office",
+                    "status": "IN",
+                    "timestamp": "2025-05-06 08:14:00",
+                }
             ],
             api_key="apiKey",
         ) as response:
@@ -84,7 +78,7 @@ class TestAttendance:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Testmcp) -> None:
         attendance = client.attendance.delete(
@@ -95,7 +89,7 @@ class TestAttendance:
         )
         assert_matches_type(AttendanceDeleteResponse, attendance, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Testmcp) -> None:
         response = client.attendance.with_raw_response.delete(
@@ -110,7 +104,7 @@ class TestAttendance:
         attendance = response.parse()
         assert_matches_type(AttendanceDeleteResponse, attendance, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Testmcp) -> None:
         with client.attendance.with_streaming_response.delete(
@@ -129,39 +123,37 @@ class TestAttendance:
 
 
 class TestAsyncAttendance:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncTestmcp) -> None:
         attendance = await async_client.attendance.create(
             body=[
-                [
-                    {
-                        "employee_code": "1234",
-                        "machine_name": "office",
-                        "status": "IN",
-                        "timestamp": "2025-05-06T08:14:00.000Z",
-                    }
-                ]
+                {
+                    "employee_code": "1234",
+                    "machine_name": "office",
+                    "status": "IN",
+                    "timestamp": "2025-05-06 08:14:00",
+                }
             ],
             api_key="apiKey",
         )
         assert_matches_type(AttendanceCreateResponse, attendance, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncTestmcp) -> None:
         response = await async_client.attendance.with_raw_response.create(
             body=[
-                [
-                    {
-                        "employee_code": "1234",
-                        "machine_name": "office",
-                        "status": "IN",
-                        "timestamp": "2025-05-06T08:14:00.000Z",
-                    }
-                ]
+                {
+                    "employee_code": "1234",
+                    "machine_name": "office",
+                    "status": "IN",
+                    "timestamp": "2025-05-06 08:14:00",
+                }
             ],
             api_key="apiKey",
         )
@@ -171,19 +163,17 @@ class TestAsyncAttendance:
         attendance = await response.parse()
         assert_matches_type(AttendanceCreateResponse, attendance, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncTestmcp) -> None:
         async with async_client.attendance.with_streaming_response.create(
             body=[
-                [
-                    {
-                        "employee_code": "1234",
-                        "machine_name": "office",
-                        "status": "IN",
-                        "timestamp": "2025-05-06T08:14:00.000Z",
-                    }
-                ]
+                {
+                    "employee_code": "1234",
+                    "machine_name": "office",
+                    "status": "IN",
+                    "timestamp": "2025-05-06 08:14:00",
+                }
             ],
             api_key="apiKey",
         ) as response:
@@ -195,7 +185,7 @@ class TestAsyncAttendance:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncTestmcp) -> None:
         attendance = await async_client.attendance.delete(
@@ -206,7 +196,7 @@ class TestAsyncAttendance:
         )
         assert_matches_type(AttendanceDeleteResponse, attendance, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncTestmcp) -> None:
         response = await async_client.attendance.with_raw_response.delete(
@@ -221,7 +211,7 @@ class TestAsyncAttendance:
         attendance = await response.parse()
         assert_matches_type(AttendanceDeleteResponse, attendance, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncTestmcp) -> None:
         async with async_client.attendance.with_streaming_response.delete(

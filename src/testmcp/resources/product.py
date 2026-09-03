@@ -12,7 +12,7 @@ from ..types import (
     product_retrieve_updated_prices_after_params,
     product_retrieve_updated_availability_after_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -57,16 +57,16 @@ class ProductResource(SyncAPIResource):
         self,
         *,
         api_key: str,
-        cat_id: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        sub_cat_id: str | NotGiven = NOT_GIVEN,
+        cat_id: str | Omit = omit,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
+        sub_cat_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProductListResponse:
         """
         Get All Products Information
@@ -114,20 +114,20 @@ class ProductResource(SyncAPIResource):
         *,
         date: str,
         api_key: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProductRetrieveCreatedAfterResponse:
         """
         Get Created Products and Updated Products After A Specific Date
 
         Args:
-          date: Date of products created | Date Format : yyyy-MM-dd
+          date: Date of products created | Date Format : yyyy-MM-dd HH:mm:ss
 
           limit: the number of records per page | 250 by default | 500 maximum
 
@@ -165,14 +165,14 @@ class ProductResource(SyncAPIResource):
         self,
         *,
         api_key: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProductRetrieveDetailsResponse:
         """
         Get All Your Products Details
@@ -214,14 +214,15 @@ class ProductResource(SyncAPIResource):
         *,
         date: str,
         api_key: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
+        promotion_branch_multi_sel_ids: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProductRetrievePromotedAfterResponse:
         """
         Get Promoted Products After A Specific Date
@@ -232,6 +233,8 @@ class ProductResource(SyncAPIResource):
           limit: the number of records per page | 250 by default | 500 maximum
 
           page: the page offset | page 1 by default
+
+          promotion_branch_multi_sel_ids: Multi selection promotion branches ids : in(1,3,3)
 
           extra_headers: Send extra headers
 
@@ -254,6 +257,7 @@ class ProductResource(SyncAPIResource):
                         "date": date,
                         "limit": limit,
                         "page": page,
+                        "promotion_branch_multi_sel_ids": promotion_branch_multi_sel_ids,
                     },
                     product_retrieve_promoted_after_params.ProductRetrievePromotedAfterParams,
                 ),
@@ -266,24 +270,27 @@ class ProductResource(SyncAPIResource):
         *,
         date: str,
         api_key: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
+        warehouse_multi_sel_ids: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProductRetrieveUpdatedAvailabilityAfterResponse:
         """
         Get Products Available Quantity After A Specific Date
 
         Args:
-          date: Date Of Stock Movment | Date Format : yyyy-MM-dd
+          date: Date Of Stock Movment | Date Format : YYYY-MM-DD HH:mm:ss
 
           limit: the number of records per page | 250 by default | 500 maximum
 
           page: the page offset | page 1 by default
+
+          warehouse_multi_sel_ids: Multi selection warehouse ids : in(1,3,3)
 
           extra_headers: Send extra headers
 
@@ -306,6 +313,7 @@ class ProductResource(SyncAPIResource):
                         "date": date,
                         "limit": limit,
                         "page": page,
+                        "warehouse_multi_sel_ids": warehouse_multi_sel_ids,
                     },
                     product_retrieve_updated_availability_after_params.ProductRetrieveUpdatedAvailabilityAfterParams,
                 ),
@@ -318,20 +326,20 @@ class ProductResource(SyncAPIResource):
         *,
         date: str,
         api_key: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProductRetrieveUpdatedPricesAfterResponse:
         """
         Get Updated Products Prices After A Specific Date
 
         Args:
-          date: Date Of Products Prices Updates | Date Format : yyyy-MM-dd
+          date: Date Of Products Prices Updates | Date Format : YYYY-MM-DD HH:mm:ss
 
           limit: the number of records per page | 250 by default | 500 maximum
 
@@ -390,16 +398,16 @@ class AsyncProductResource(AsyncAPIResource):
         self,
         *,
         api_key: str,
-        cat_id: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        sub_cat_id: str | NotGiven = NOT_GIVEN,
+        cat_id: str | Omit = omit,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
+        sub_cat_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProductListResponse:
         """
         Get All Products Information
@@ -447,20 +455,20 @@ class AsyncProductResource(AsyncAPIResource):
         *,
         date: str,
         api_key: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProductRetrieveCreatedAfterResponse:
         """
         Get Created Products and Updated Products After A Specific Date
 
         Args:
-          date: Date of products created | Date Format : yyyy-MM-dd
+          date: Date of products created | Date Format : yyyy-MM-dd HH:mm:ss
 
           limit: the number of records per page | 250 by default | 500 maximum
 
@@ -498,14 +506,14 @@ class AsyncProductResource(AsyncAPIResource):
         self,
         *,
         api_key: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProductRetrieveDetailsResponse:
         """
         Get All Your Products Details
@@ -547,14 +555,15 @@ class AsyncProductResource(AsyncAPIResource):
         *,
         date: str,
         api_key: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
+        promotion_branch_multi_sel_ids: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProductRetrievePromotedAfterResponse:
         """
         Get Promoted Products After A Specific Date
@@ -565,6 +574,8 @@ class AsyncProductResource(AsyncAPIResource):
           limit: the number of records per page | 250 by default | 500 maximum
 
           page: the page offset | page 1 by default
+
+          promotion_branch_multi_sel_ids: Multi selection promotion branches ids : in(1,3,3)
 
           extra_headers: Send extra headers
 
@@ -587,6 +598,7 @@ class AsyncProductResource(AsyncAPIResource):
                         "date": date,
                         "limit": limit,
                         "page": page,
+                        "promotion_branch_multi_sel_ids": promotion_branch_multi_sel_ids,
                     },
                     product_retrieve_promoted_after_params.ProductRetrievePromotedAfterParams,
                 ),
@@ -599,24 +611,27 @@ class AsyncProductResource(AsyncAPIResource):
         *,
         date: str,
         api_key: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
+        warehouse_multi_sel_ids: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProductRetrieveUpdatedAvailabilityAfterResponse:
         """
         Get Products Available Quantity After A Specific Date
 
         Args:
-          date: Date Of Stock Movment | Date Format : yyyy-MM-dd
+          date: Date Of Stock Movment | Date Format : YYYY-MM-DD HH:mm:ss
 
           limit: the number of records per page | 250 by default | 500 maximum
 
           page: the page offset | page 1 by default
+
+          warehouse_multi_sel_ids: Multi selection warehouse ids : in(1,3,3)
 
           extra_headers: Send extra headers
 
@@ -639,6 +654,7 @@ class AsyncProductResource(AsyncAPIResource):
                         "date": date,
                         "limit": limit,
                         "page": page,
+                        "warehouse_multi_sel_ids": warehouse_multi_sel_ids,
                     },
                     product_retrieve_updated_availability_after_params.ProductRetrieveUpdatedAvailabilityAfterParams,
                 ),
@@ -651,20 +667,20 @@ class AsyncProductResource(AsyncAPIResource):
         *,
         date: str,
         api_key: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ProductRetrieveUpdatedPricesAfterResponse:
         """
         Get Updated Products Prices After A Specific Date
 
         Args:
-          date: Date Of Products Prices Updates | Date Format : yyyy-MM-dd
+          date: Date Of Products Prices Updates | Date Format : YYYY-MM-DD HH:mm:ss
 
           limit: the number of records per page | 250 by default | 500 maximum
 

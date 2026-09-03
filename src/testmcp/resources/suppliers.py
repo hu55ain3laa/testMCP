@@ -5,8 +5,8 @@ from __future__ import annotations
 import httpx
 
 from ..types import supplier_create_params, supplier_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform, async_maybe_transform
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -47,17 +47,17 @@ class SuppliersResource(SyncAPIResource):
         *,
         name: str,
         api_key: str,
-        city: str | NotGiven = NOT_GIVEN,
-        code: str | NotGiven = NOT_GIVEN,
-        comm_reg_number: str | NotGiven = NOT_GIVEN,
-        email: str | NotGiven = NOT_GIVEN,
-        phone1: str | NotGiven = NOT_GIVEN,
+        city: str | Omit = omit,
+        code: str | Omit = omit,
+        comm_reg_number: str | Omit = omit,
+        email: str | Omit = omit,
+        phone1: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SupplierCreateResponse:
         """
         Save New Supplier
@@ -108,18 +108,18 @@ class SuppliersResource(SyncAPIResource):
         id: str,
         *,
         api_key: str,
-        city: str | NotGiven = NOT_GIVEN,
-        code: str | NotGiven = NOT_GIVEN,
-        comm_reg_number: str | NotGiven = NOT_GIVEN,
-        email: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        phone1: str | NotGiven = NOT_GIVEN,
+        city: str | Omit = omit,
+        code: str | Omit = omit,
+        comm_reg_number: str | Omit = omit,
+        email: str | Omit = omit,
+        name: str | Omit = omit,
+        phone1: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SupplierUpdateResponse:
         """
         Update Supplier
@@ -149,7 +149,7 @@ class SuppliersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"apiKey": api_key, **(extra_headers or {})}
         return self._put(
-            f"/suppliers/{id}",
+            path_template("/suppliers/{id}", id=id),
             body=maybe_transform(
                 {
                     "city": city,
@@ -193,17 +193,17 @@ class AsyncSuppliersResource(AsyncAPIResource):
         *,
         name: str,
         api_key: str,
-        city: str | NotGiven = NOT_GIVEN,
-        code: str | NotGiven = NOT_GIVEN,
-        comm_reg_number: str | NotGiven = NOT_GIVEN,
-        email: str | NotGiven = NOT_GIVEN,
-        phone1: str | NotGiven = NOT_GIVEN,
+        city: str | Omit = omit,
+        code: str | Omit = omit,
+        comm_reg_number: str | Omit = omit,
+        email: str | Omit = omit,
+        phone1: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SupplierCreateResponse:
         """
         Save New Supplier
@@ -254,18 +254,18 @@ class AsyncSuppliersResource(AsyncAPIResource):
         id: str,
         *,
         api_key: str,
-        city: str | NotGiven = NOT_GIVEN,
-        code: str | NotGiven = NOT_GIVEN,
-        comm_reg_number: str | NotGiven = NOT_GIVEN,
-        email: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        phone1: str | NotGiven = NOT_GIVEN,
+        city: str | Omit = omit,
+        code: str | Omit = omit,
+        comm_reg_number: str | Omit = omit,
+        email: str | Omit = omit,
+        name: str | Omit = omit,
+        phone1: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SupplierUpdateResponse:
         """
         Update Supplier
@@ -295,7 +295,7 @@ class AsyncSuppliersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"apiKey": api_key, **(extra_headers or {})}
         return await self._put(
-            f"/suppliers/{id}",
+            path_template("/suppliers/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "city": city,

@@ -16,6 +16,8 @@ class Data(BaseModel):
 
     default_price: Optional[str] = FieldInfo(alias="defaultPrice", default=None)
 
+    last_updated_on: Optional[str] = FieldInfo(alias="lastUpdatedOn", default=None)
+
     name: Optional[str] = None
 
     reduced_price: Optional[str] = FieldInfo(alias="reducedPrice", default=None)

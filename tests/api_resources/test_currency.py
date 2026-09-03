@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCurrency:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_rates(self, client: Testmcp) -> None:
         currency = client.currency.get_rates(
@@ -28,7 +28,7 @@ class TestCurrency:
         )
         assert_matches_type(CurrencyGetRatesResponse, currency, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_rates(self, client: Testmcp) -> None:
         response = client.currency.with_raw_response.get_rates(
@@ -43,7 +43,7 @@ class TestCurrency:
         currency = response.parse()
         assert_matches_type(CurrencyGetRatesResponse, currency, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_rates(self, client: Testmcp) -> None:
         with client.currency.with_streaming_response.get_rates(
@@ -62,9 +62,11 @@ class TestCurrency:
 
 
 class TestAsyncCurrency:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_rates(self, async_client: AsyncTestmcp) -> None:
         currency = await async_client.currency.get_rates(
@@ -75,7 +77,7 @@ class TestAsyncCurrency:
         )
         assert_matches_type(CurrencyGetRatesResponse, currency, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_rates(self, async_client: AsyncTestmcp) -> None:
         response = await async_client.currency.with_raw_response.get_rates(
@@ -90,7 +92,7 @@ class TestAsyncCurrency:
         currency = await response.parse()
         assert_matches_type(CurrencyGetRatesResponse, currency, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_rates(self, async_client: AsyncTestmcp) -> None:
         async with async_client.currency.with_streaming_response.get_rates(

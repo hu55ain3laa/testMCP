@@ -11,7 +11,7 @@ __all__ = ["ProductRetrieveCreatedAfterParams"]
 
 class ProductRetrieveCreatedAfterParams(TypedDict, total=False):
     date: Required[str]
-    """Date of products created | Date Format : yyyy-MM-dd"""
+    """Date of products created | Date Format : yyyy-MM-dd HH:mm:ss"""
 
     api_key: Required[Annotated[str, PropertyInfo(alias="apiKey")]]
 

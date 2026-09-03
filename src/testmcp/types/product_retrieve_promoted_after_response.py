@@ -18,6 +18,10 @@ class Data(BaseModel):
 
     name: Optional[str] = None
 
+    promotion_end_date: Optional[str] = FieldInfo(alias="promotionEndDate", default=None)
+
+    promotion_start_date: Optional[str] = FieldInfo(alias="promotionStartDate", default=None)
+
     reduced_price: Optional[str] = FieldInfo(alias="reducedPrice", default=None)
 
 

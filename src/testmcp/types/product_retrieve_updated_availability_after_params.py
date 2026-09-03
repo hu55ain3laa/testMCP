@@ -11,7 +11,7 @@ __all__ = ["ProductRetrieveUpdatedAvailabilityAfterParams"]
 
 class ProductRetrieveUpdatedAvailabilityAfterParams(TypedDict, total=False):
     date: Required[str]
-    """Date Of Stock Movment | Date Format : yyyy-MM-dd"""
+    """Date Of Stock Movment | Date Format : YYYY-MM-DD HH:mm:ss"""
 
     api_key: Required[Annotated[str, PropertyInfo(alias="apiKey")]]
 
@@ -20,3 +20,6 @@ class ProductRetrieveUpdatedAvailabilityAfterParams(TypedDict, total=False):
 
     page: int
     """the page offset | page 1 by default"""
+
+    warehouse_multi_sel_ids: Annotated[str, PropertyInfo(alias="warehouseMultiSelIds")]
+    """Multi selection warehouse ids : in(1,3,3)"""

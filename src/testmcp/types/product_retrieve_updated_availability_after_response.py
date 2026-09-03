@@ -14,6 +14,8 @@ class Data(BaseModel):
 
     barcode: Optional[str] = None
 
+    last_updated_on: Optional[str] = FieldInfo(alias="lastUpdatedOn", default=None)
+
     name: Optional[str] = None
 
 

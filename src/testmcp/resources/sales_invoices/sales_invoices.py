@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._utils import path_template
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -60,7 +61,7 @@ class SalesInvoicesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Print Sales Invoice
@@ -79,7 +80,7 @@ class SalesInvoicesResource(SyncAPIResource):
         extra_headers = {"Accept": "text/html", **(extra_headers or {})}
         extra_headers = {"apiKey": api_key, **(extra_headers or {})}
         return self._get(
-            f"/salesInvoices/{id}/printHtml",
+            path_template("/salesInvoices/{id}/printHtml", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -121,7 +122,7 @@ class AsyncSalesInvoicesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Print Sales Invoice
@@ -140,7 +141,7 @@ class AsyncSalesInvoicesResource(AsyncAPIResource):
         extra_headers = {"Accept": "text/html", **(extra_headers or {})}
         extra_headers = {"apiKey": api_key, **(extra_headers or {})}
         return await self._get(
-            f"/salesInvoices/{id}/printHtml",
+            path_template("/salesInvoices/{id}/printHtml", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
