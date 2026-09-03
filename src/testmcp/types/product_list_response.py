@@ -1,20 +1,79 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["ProductListResponse", "Data", "DataAllSpecDetail", "DataProductAssignedSpec"]
+__all__ = [
+    "ProductListResponse",
+    "Data",
+    "DataProductAssignedSpec",
+    "DataProductAssignedSpecSpecDetails",
+    "DataProductAssignedSpecSpecDetailsColor",
+    "DataProductAssignedSpecSpecDetailsCustom",
+    "DataProductAssignedSpecSpecDetailsMaterial",
+    "DataProductAssignedSpecSpecDetailsSize",
+]
 
 
-class DataAllSpecDetail(BaseModel):
-    id: Optional[int] = None
-    """Spec details ID"""
+class DataProductAssignedSpecSpecDetailsColor(BaseModel):
+    detail_code: Optional[str] = FieldInfo(alias="detailCode", default=None)
 
-    name: Optional[str] = None
-    """Spec Details Name"""
+    detail_id: Optional[str] = FieldInfo(alias="detailId", default=None)
+
+    detail_name: Optional[str] = FieldInfo(alias="detailName", default=None)
+
+    group_id: Optional[str] = FieldInfo(alias="groupId", default=None)
+
+    group_name: Optional[str] = FieldInfo(alias="groupName", default=None)
+
+
+class DataProductAssignedSpecSpecDetailsCustom(BaseModel):
+    detail_code: Optional[str] = FieldInfo(alias="detailCode", default=None)
+
+    detail_id: Optional[str] = FieldInfo(alias="detailId", default=None)
+
+    detail_name: Optional[str] = FieldInfo(alias="detailName", default=None)
+
+    group_id: Optional[str] = FieldInfo(alias="groupId", default=None)
+
+    group_name: Optional[str] = FieldInfo(alias="groupName", default=None)
+
+
+class DataProductAssignedSpecSpecDetailsMaterial(BaseModel):
+    detail_code: Optional[str] = FieldInfo(alias="detailCode", default=None)
+
+    detail_id: Optional[str] = FieldInfo(alias="detailId", default=None)
+
+    detail_name: Optional[str] = FieldInfo(alias="detailName", default=None)
+
+    group_id: Optional[str] = FieldInfo(alias="groupId", default=None)
+
+    group_name: Optional[str] = FieldInfo(alias="groupName", default=None)
+
+
+class DataProductAssignedSpecSpecDetailsSize(BaseModel):
+    detail_code: Optional[str] = FieldInfo(alias="detailCode", default=None)
+
+    detail_id: Optional[str] = FieldInfo(alias="detailId", default=None)
+
+    detail_name: Optional[str] = FieldInfo(alias="detailName", default=None)
+
+    group_id: Optional[str] = FieldInfo(alias="groupId", default=None)
+
+    group_name: Optional[str] = FieldInfo(alias="groupName", default=None)
+
+
+class DataProductAssignedSpecSpecDetails(BaseModel):
+    color: Optional[DataProductAssignedSpecSpecDetailsColor] = None
+
+    custom: Optional[DataProductAssignedSpecSpecDetailsCustom] = None
+
+    material: Optional[DataProductAssignedSpecSpecDetailsMaterial] = None
+
+    size: Optional[DataProductAssignedSpecSpecDetailsSize] = None
 
 
 class DataProductAssignedSpec(BaseModel):
@@ -26,13 +85,11 @@ class DataProductAssignedSpec(BaseModel):
 
     name: Optional[str] = None
 
-    spec_details: Optional[Dict[str, int]] = FieldInfo(alias="specDetails", default=None)
+    spec_details: Optional[DataProductAssignedSpecSpecDetails] = FieldInfo(alias="specDetails", default=None)
 
 
 class Data(BaseModel):
     id: Optional[str] = None
-
-    all_spec_details: Optional[Dict[str, List[DataAllSpecDetail]]] = FieldInfo(alias="allSpecDetails", default=None)
 
     barcode: Optional[str] = None
 
